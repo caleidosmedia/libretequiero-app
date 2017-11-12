@@ -47,6 +47,17 @@
                 }
             })
 
+            .state('app.protege', {
+                url: '/protege',
+                cache: false,
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/protege/views/protege.html',
+                        controller: 'ProtegeController'
+                    }
+                }
+            })
+
         $urlRouterProvider.otherwise(function ($injector) {
             var $state = $injector.get("$state");
             $state.go("app.home");
