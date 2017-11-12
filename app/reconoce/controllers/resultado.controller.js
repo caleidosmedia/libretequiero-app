@@ -9,14 +9,16 @@
         '$scope',
         '$state',
         '$stateParams',
-        'ReconoceService'
+        'ReconoceService',
+        'Sound'
     ];
 
     function ResultadoController(
         $scope,
         $state,
         $stateParams,
-        ReconoceService
+        ReconoceService,
+        Sound
     ) {
         $scope.animals = [];
         $scope.detail = false;
@@ -38,11 +40,17 @@
             $state.go(page);
         };
 
-        
+
         $scope.goAnimal = function (n) {
             $state.go('app.animal', {
                 id: n
             });
+        };
+
+        $scope.playSound = function () {
+            if (window.cordova) {
+                Sound.play($scope.animals[0].scientific_name, $scope.animals[0].scientific_name+'.mp3',false);
+            }
         };
 
         ReconoceService
@@ -50,6 +58,13 @@
             .then( function (data) {
                 console.log(data);
                 $scope.animals = data;
+
+                if ($scope.animals.length <= 1) {
+                    if (window.cordova) {
+                        Sound.play(data[0].scientific_name, data[0].scientific_name+'.mp3',false);
+                    }
+                }
+
             }).catch( function (error) {
 
             });
