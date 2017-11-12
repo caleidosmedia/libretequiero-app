@@ -11,7 +11,7 @@
         </div>
     </ion-nav-bar>
     <ion-content>
-        <div class="reconoce__pregunta__title">¿A qué grupo pertenece?</div>
+        <div class="reconoce__pregunta__title" ng-if="animals.length > 1">¿Es alguna de estas especies?</div>
 
         <div class="reconoce__pregunta" ng-if="animals.length > 1">
             <div class="reconoce__pregunta__lista">
@@ -26,6 +26,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="reconoce__pregunta__title" ng-if="animals.length <= 1">¿Es esta la especie?</div>
 
         <div class="reconoce__animal" ng-if="animals.length <= 1">
             <div class="reconoce__animal__nombreCientifico">

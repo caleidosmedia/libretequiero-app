@@ -80,6 +80,17 @@
                 }
             })
 
+            .state('app.explora', {
+                url: '/explora',
+                cache: false,
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/explora/views/explora.html',
+                        controller: 'ExploraController'
+                    }
+                }
+            })
+
         $urlRouterProvider.otherwise(function ($injector) {
             var $state = $injector.get("$state");
             $state.go("app.home");

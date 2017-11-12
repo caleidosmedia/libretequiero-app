@@ -3,6 +3,28 @@
 
     angular
     .module('atrapa')
+    .controller('ExploraController', ExploraController);
+
+    ExploraController.$inject = [
+        '$scope',
+        '$state'
+    ];
+
+    function ExploraController(
+        $scope,
+        $state
+    ) {
+
+    }
+})();
+
+
+
+(function() {
+    'use strict';
+
+    angular
+    .module('atrapa')
     .controller('HomeController', HomeController);
 
     HomeController.$inject = [
