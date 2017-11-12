@@ -404,7 +404,8 @@
         $scope.filtros = {
             taxonomia: null,
             grupo:null,
-            color:null
+            color:null,
+            color_secundario: null,
         };
 
         $scope.customBack = function () {
@@ -453,13 +454,26 @@
                     });
                 }
 
-                if (filter == 'color') {
+                if (filter == 'color' && $scope.filtros.grupo == 'loros-grandes-y-guacamayos' && value != 'amarillo') {
+                    $scope.setQuestion(4);
+                }
+                else if (filter == 'color') {
                     $state.go('app.resultado', {
                         taxonomia: $scope.filtros.taxonomia,
                         grupo: $scope.filtros.grupo,
                         color: $scope.filtros.color
                     });
                 }
+
+                if (filter == 'color_secundario') {
+                    $state.go('app.resultado', {
+                        taxonomia: $scope.filtros.taxonomia,
+                        grupo: $scope.filtros.grupo,
+                        color: $scope.filtros.color,
+                        color_secundario: $scope.filtros.color_secundario
+                    });
+                }
+                    
             }, 500);
         };
     }
@@ -492,8 +506,10 @@
         $scope.filtros = {
             taxonomia: $stateParams.taxonomia,
             grupo: $stateParams.grupo,
-            color: $stateParams.color
+            color: $stateParams.color,
+            color_secundario: $stateParams.color_secundario
         };
+
 
         $scope.viewDetail = function () {
             return $scope.detail;
@@ -507,7 +523,7 @@
             $state.go(page);
         };
 
-        
+
         $scope.goAnimal = function (n) {
             $state.go('app.animal', {
                 id: n
@@ -515,7 +531,7 @@
         };
 
         ReconoceService
-            .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color)
+            .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color, $stateParams.color_secundario)
             .then( function (data) {
                 console.log(data);
                 $scope.animals = data;

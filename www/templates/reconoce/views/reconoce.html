@@ -293,6 +293,67 @@
             </div>
         </div>
 
+        <div class="reconoce__pregunta" ng-if="isQuestion(4) && isFilter('grupo', 'loros-grandes-y-guacamayos')">
+            <div class="reconoce__pregunta__title">¿Qué color hay en sus alas?</div>
+
+            <div class="reconoce__pregunta__lista">
+                <div class="reconoce__pregunta__columna reconoce__pregunta__columna--2">
+                    <div class="reconoce__pregunta__inner" ng-class="{'reconoce__pregunta__inner--active': isFilter('color_secundario', 'naranja') }" ng-click="setFilter('color_secundario', 'naranja')" ng-show="isFilter('color', 'principalmente-verde')">
+                       <div class="reconoce__pregunta__img">
+                            <img src="img/alas_naranja.png">
+                        </div>
+
+                        <div class="reconoce__pregunta__name">NARANJA</div>
+                    </div>
+                </div>
+
+                <div class="reconoce__pregunta__columna reconoce__pregunta__columna--2">
+                    <div class="reconoce__pregunta__inner" ng-class="{'reconoce__pregunta__inner--active': isFilter('color_secundario', 'azul') }" ng-click="setFilter('color_secundario', 'azul')">
+                       <div class="reconoce__pregunta__img">
+                            <img src="img/alas_azul.png">
+                        </div>
+
+                        <div class="reconoce__pregunta__name">AZUL</div>
+                    </div>
+                </div>
+
+
+                <div class="reconoce__pregunta__columna reconoce__pregunta__columna--2">
+                    <div class="reconoce__pregunta__inner" ng-class="{'reconoce__pregunta__inner--active': isFilter('color_secundario', 'rojo') }" ng-click="setFilter('color_secundario', 'rojo')" ng-show="isFilter('color', 'principalmente-verde')">
+                       <div class="reconoce__pregunta__img">
+                            <img src="img/alas_rojo.png">
+                        </div>
+
+                        <div class="reconoce__pregunta__name">ROJO</div>
+                    </div>
+                </div>
+
+
+                <div class="reconoce__pregunta__columna reconoce__pregunta__columna--2">
+                    <div class="reconoce__pregunta__inner" ng-class="{'reconoce__pregunta__inner--active': isFilter('color_secundario', 'amarillo') }" ng-click="setFilter('color_secundario', 'amarillo')" ng-show="isFilter('color', 'principalmente-verde')">
+                       <div class="reconoce__pregunta__img">
+                            <img src="img/alas_amarillo.png">
+                        </div>
+
+                        <div class="reconoce__pregunta__name">AMARILLO</div>
+                    </div>
+                </div>
+
+
+                <div class="reconoce__pregunta__columna reconoce__pregunta__columna--2">
+                    <div class="reconoce__pregunta__inner" ng-class="{'reconoce__pregunta__inner--active': isFilter('color_secundario', 'combinado') }" ng-click="setFilter('color_secundario', 'combinado')" ng-show="isFilter('color', 'rojo')">
+                       <div class="reconoce__pregunta__img">
+                            <img src="img/alas_combinado.png">
+                        </div>
+
+                        <div class="reconoce__pregunta__name">ROJAS, AMARILLAS, AZULES Y VERDES</div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
         <div class="reconoce__footer">
             <ul class="reconoce__filters" ng-if="filtros.taxonomia != null || filtros.grupo != null || filtros.color != null">
                 <li class="reconoce__filter" ng-if="filtros.taxonomia != null" ng-click="setQuestion(1)">
