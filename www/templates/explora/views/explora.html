@@ -18,22 +18,18 @@
         </div>
 
         <div class="explora__cards">
-            <div class="explora__card">
+            <div class="explora__card" ng-repeat="(key, animal) in animals" ng-click="goAnimal(animal.id)">
                 <div class="explora__card__img">
-                    <img src="http://lorempixel.com/300/450">
+                    <img src="{{animal.image_url}}">
                 </div>
-                <div class="explora__card__name">Amazona Festiva</div>
-                <div class="explora__card__detail">Loro lomo rojo, loro vincha roja</div>
+                <div class="explora__card__name">{{animal.scientific_name}}</div>
+                <div class="explora__card__detail">{{animal.common_name}}</div>
                 <div class="explora__card__link">Ver detalle <i class="ion-ios-arrow-right"></i></div>
 
             </div>
         </div>
 
-        <ul>
-            <li ng-repeat="(key, animal) in animals">{{animal.scientific_name}}</li>
-        </ul>
-
-        <button ng-click="loadMore()">Ver mas</button>
+        <button ng-click="loadMore()" class="button__default button-block">Ver mas</button>
     </ion-content>
 
 

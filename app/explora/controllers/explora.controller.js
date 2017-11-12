@@ -18,7 +18,7 @@
     ) {
 
         $scope.currentPage = 1;
-        
+
         function loadAnimals(page) {
 
             ExploraService.list(page).then( function (data) {
@@ -42,6 +42,12 @@
         }
 
         $scope.animals = [];
+
+        $scope.goAnimal = function (n) {
+            $state.go('app.animal', {
+                id: n
+            });
+        };
 
     }
 })();
