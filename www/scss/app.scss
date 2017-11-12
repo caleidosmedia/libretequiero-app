@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+@import
+//base
+    "base/config",
+    "base/fonts",
+    "base/presets",
+    "base/general",
+
+//components
+    "component/inputs",
+    "component/buttons",
+    "component/menu",
+    "component/modal",
+    "component/list",
+    "component/loading",
+
+//blocks
+    "block/header",
+    "block/footer",
+
+//pages
+    "page/login",
+    "page/home",
+    "page/denuncias",
+    "page/reconoce";

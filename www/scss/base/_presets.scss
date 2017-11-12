@@ -1,0 +1,32 @@
+html,
+body {
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    font-weight: $base-font-weight;
+    background: #f7f7f7;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: $base-font-family;
+    font-weight: $base-font-weight;
+}
+
+strong,
+b {
+    font-weight: $bold;
+}
+
+.scroll {
+    height: 100%;
+}
+
+@for $i from 1 through 6 {
+    .h#{$i},
+    h#{$i} {
+        font-family: $base-font-family;
+        font-weight: $bold;
+    }
+}

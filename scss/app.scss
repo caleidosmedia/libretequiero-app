@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+@import
+//base
+    "base/config",
+    "base/fonts",
+    "base/presets",
+    "base/general",
+
+//components
+    "component/buttons",
+    "component/tabs",
+    "component/lists",
+
+//blocks
+    "block/header",
+
+//pages
+    "page/login",
+    "page/home",
+    "page/profile",
+    "page/seleccion",
+    "page/recompensas",
+    "page/roulette",
+    "page/category-donnut",
+    "page/question",
+    "page/result",
+    "page/modal",
+    "page/versus",
+    "page/retador",
+    "page/ranking";

@@ -1,0 +1,23 @@
+.games {
+    &__item {
+        position: relative;
+        display: flex;
+        margin: 5px 0;
+
+        span {
+            font-weight: $bold;
+            font-size: 14px;
+            color: $brown;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 15px;
+            line-height: 29px;
+        }
+    }
+
+    &__button {
+        margin-left: auto;
+    }
+}

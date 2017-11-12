@@ -1,0 +1,58 @@
+.has-buttons {
+    bottom: 65px;
+}
+
+.bar-stable {
+    .button {
+        &.button-clear,
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+
+.button {
+    font-family: $base-font-family;
+    font-size: 14px;
+    font-weight: $bold;
+
+    &__default,
+    &.button-positive {
+        border-color: transparent;
+        background-color: $green;
+        color: #fff;
+        line-height: 38px;
+        min-height: 40px;
+
+        &.active,
+        &.activated {
+            border-color: transparent;
+            background-color: darken($green, 10%);
+        }
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    &__orange {
+        @extend .button__default;
+        background-color: #f5a623;
+
+        &.active,
+        &.activated {
+            background-color: darken(#f5a623, 10%);
+        }
+    }
+
+    &__red {
+        @extend .button__default;
+        background-color: #d0021b;
+
+        &.active,
+        &.activated {
+            background-color: darken(#d0021b, 10%);
+        }
+    }
+}

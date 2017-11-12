@@ -1,0 +1,30 @@
+.tabs {
+    background: $brown;
+    border-top-width: 0px;
+    height: 64px;
+    padding: 10px 0 0 0;
+}
+
+.tab-item {
+    opacity: 1;
+    font-family: $base-font-family;
+    font-weight: $bold;
+    text-transform: uppercase;
+}
+
+.tabs-icon-top >.tabs .tab-item {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+ion-tabs.tabs-color-active-positive {
+    .tab-item {
+        color: white;
+
+        &.tab-item-active,
+        &.tab-item.activated,
+        &.active {
+            color: white;
+        }
+    }
+}

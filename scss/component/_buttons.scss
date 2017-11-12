@@ -1,0 +1,41 @@
+.button {
+    font-family: $base-font-family;
+    font-size: 16px;
+    font-weight: $bold;
+
+    &__default,
+    &.button-positive {
+        border-color: transparent;
+        background-color: $pink;
+        color: #fff;
+        line-height: 38px;
+        min-height: 40px;
+
+        &.active,
+        &.activated {
+            border-color: transparent;
+            background-color: darken($pink, 10%);
+        }
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    &__play {
+        font-size: 13px;
+        min-height: 29px;
+        line-height: 27px;
+        background-color: $yellow;
+        min-width: 70px;
+        border-radius: 8px;
+        color: $brown;
+
+        &.active,
+        &.activated {
+            border-color: transparent;
+            background-color: darken($yellow, 10%);
+            color: $brown;
+        }
+    }
+}

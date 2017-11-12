@@ -1,0 +1,45 @@
+.roulette-tittle {
+    font-family: $base-font-family;
+    font-size: 14px;
+    font-weight: $bold;
+    line-height: 1.43;
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: #6d380e;
+    margin: 0 0 25px 0;
+}
+
+.roulette-content {
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.img-roulette-base {
+    width: 100%;
+    height: auto;
+}
+
+.roulette-box {
+    position: absolute;
+    top: 0;
+}
+
+.img-roulette-base-color {
+    width: 300px;
+    height: auto;
+}
+
+.roulette-girar {
+    position: absolute;
+    top: 50%;
+    margin-top: -67px;
+    width: 125px;
+    left: 50%;
+    margin-left: -62.5px;
+}
+
+.img-roulette-girar {
+    width: 125px;
+    height: auto;
+}

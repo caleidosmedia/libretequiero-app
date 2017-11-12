@@ -1,0 +1,56 @@
+.modal {
+    .scroll-content {
+        background: white;
+    }
+
+    &__title {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        color: $green;
+    }
+
+    &__close {
+        color: #1d1d26;
+        opacity: .5;
+        line-height: 34px;
+        font-size: 25px;
+        margin-left: 10px;
+    }
+
+     &__form {
+        margin-top: 40px;
+        padding: 0 40px;
+
+        &__text {
+            display: block;
+            font-weight: 600;
+            font-size: 20px;
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+        }
+
+        &__label {
+             color: #1d1d26;
+             letter-spacing: 1.5px;
+             font-size: 15px;
+             opacity: .5;
+        }
+
+        &__group {
+            display: block;
+            border-bottom: solid 2px rgba(#1d1d26, .1);
+            margin-bottom: 30px;
+        }
+
+        &__input[type=text],
+        &__input[type=password] {
+            font-weight: $semibold;
+            font-size: 20px;
+            height: 40px;
+            line-height: 20px;
+            width: 100%;
+        }
+    }
+}

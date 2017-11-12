@@ -1,0 +1,156 @@
+.result {
+    &__content {
+        padding: 30px;
+    }
+
+    &__tittle {
+        font-family: $base-font-family;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 2.14;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: #e5138e; 
+        margin: 0 0 10px 0;    
+    }
+
+    &__final {
+        font-family: $base-font-family;
+        font-size: 45px;
+        font-weight: 500;
+        line-height: 0.67;
+        letter-spacing: 1.7px;
+        text-align: center;
+        color: #6d380e;
+        margin: 0 0 18px 0;
+    }
+
+    &__point {
+        font-family: $base-font-family;
+        font-size: 24px;
+        font-weight: $bold;
+        line-height: 1.29;
+        text-align: center;
+        color: #6d380e;
+        margin: 0 0 0 0;
+        span {
+            color: #e5138e;
+        }
+    }
+
+    &__faltantes {
+        font-family: $base-font-family;
+        font-size: 12px;
+        font-weight: $bold;
+        line-height: 1.25;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: #6d380e;
+        margin: 0 0 85px 0;
+    }
+
+    &__new-game {
+        font-family: $base-font-family;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: left;
+        color: #fff;
+        background: #e5138e;
+        width: 100%;
+        display: block;
+        border-radius: 4px;
+        padding: 10px 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    &__incorrect {
+        margin: 0 0 10px 0;
+    }
+
+    &__reloj {
+        margin: 15px auto;
+        display: block;
+    }
+
+    &__progress {
+        height: 37px;
+        margin-bottom: 17px;
+        overflow: hidden;
+        background-color: #e2e2e2;
+        border-radius: 64px;
+
+        .progress-bar-content {
+            width: calc(100% - 65px);
+            height: 37px;
+            float: left;
+        }
+
+        .progress-bar-success {
+            background-color: #5cb85c;
+        }
+
+        .progress-bar-striped, .progress-striped .progress-bar {
+            background-image: linear-gradient(145deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+            -webkit-background-size: 40px 40px;
+            background-size: 40px 40px;
+        }
+
+        .progress-bar {
+            float: left;
+            width: 0;
+            height: 100%;
+            line-height: 20px;
+            background-color: #1ad2f6;
+            -webkit-transition: width .6s ease;
+            -o-transition: width .6s ease;
+            transition: width .6s ease;
+        }
+        span {
+            font-family: $base-font-family;
+            font-size: 14px;
+            font-weight: $bold;
+            text-align: right;
+            color: #6b360b;
+            line-height: 37px;
+            display: block;
+            margin: 0 10px 0 0;
+        }
+    }
+}
+
+.obsequio {
+    &__tittle-g {
+        font-family: $base-font-family;
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 1.15;
+        letter-spacing: 1px;
+        text-align: center;
+        color: #6d380e;  
+        margin: 20px 0 40px 0;
+    }
+
+    &__row {
+        display: table;
+        width: 100%;
+        &--mitad {
+            width: 50%;
+            text-align: center;
+            display: table-cell;
+            padding: 0 0 20px 0;
+            vertical-align: bottom;
+            p {
+                font-family: $base-font-family;
+                font-size: 16px;
+                font-weight: 500;
+                color: #6d380e;
+                margin: 5px 0 0 0;
+                strong {
+                    font-weight: $bold;
+                    color: #e5138e;
+                }
+            }
+        }
+    }
+}

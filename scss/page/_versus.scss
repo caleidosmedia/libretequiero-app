@@ -1,0 +1,114 @@
+.versus {
+	&__content {
+		background-color: $pink;
+		padding: 25px;
+	}
+
+	&__main {
+		text-align: center;
+		&--vs {
+			font-family: $base-font-family;
+			font-size: 46px;
+			font-weight: $bold;
+			letter-spacing: 1.8px;
+			text-align: center;
+			color: #ffffff;
+			margin: -8px 0 15px 0;
+		}
+
+		&--p {
+			font-family: $base-font-family;
+			font-size: 14px;
+			font-weight: $bold;
+			color: #ffffff;
+			margin: 0 0 28px 0;
+		}
+	}
+
+	&__choose {
+		border-radius: 4px;
+		background-color: #f8f7f5;
+		padding: 13px;
+		&--row {
+			overflow: hidden;
+			padding: 8px 0;
+		}
+
+		&--p {
+			font-family: $base-font-family;
+			font-size: 16px;
+			font-weight: $bold;
+			text-align: center;
+			color: #6d380e;
+			margin: -6px 0 7px 0;
+		}
+
+		&--box {
+			background-color: #ffffff;
+			padding: 6px 20px 20px 20px;
+			overflow: hidden;
+			input {
+				font-family: $base-font-family;
+				font-size: 14px;
+				font-weight: 500;
+				text-align: left;
+				color: #371b05;
+				border-bottom: solid 1px #979797;
+				width: 100%;
+			}
+		}
+
+		&--list {
+			list-style: none;
+			margin-top: 15px;
+		}
+
+		&--nombre {
+			width: calc(100% - 19px);
+			float: left;
+			p {
+				font-family: $base-font-family;
+				font-size: 14px;
+				font-weight: bold;
+				line-height: 1.29;
+				letter-spacing: 0.5px;
+				text-align: left;
+				color: #371b05;
+				margin: 0 0 0 0;
+			}
+		}
+
+		&--border {
+			width: 19px;
+			height: 19px;
+			border-radius: 50%;
+			background-color: #6c380e;
+			text-align: center;
+			float: right;
+			span {
+				font-family: $base-font-family;
+				font-size: 13px;
+				font-weight: $bold;
+				letter-spacing: .5px;
+				display: block;
+				color: #fff;
+				line-height: 19px;
+				text-align: center;
+			}
+		}
+	}
+}
+
+.choose_aleatorio {
+	font-family: $base-font-family;
+	font-size: 16px;
+	font-weight: $bold;
+	color: #ffffff;
+	padding: 8px;
+	border-radius: 4px;
+	background-color: #f68e22;
+	border: none;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 23px 0;
+}

@@ -1,0 +1,91 @@
+.rank {
+    margin-top: 25px;
+
+    &__content {
+        background: white;
+
+        &--left {
+            border-radius: 0 4px 4px 4px;
+        }
+
+        &--right {
+            border-radius: 4px 0 4px 4px;
+        }
+    }
+
+    &__header {
+        display: flex;
+    }
+
+    &__tab {
+        width: 50%;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: white;
+        font-weight: $bold;
+        font-size: 14px;
+        padding: 10px 0;
+
+        &--active {
+            color: $brown;
+            background: white;
+            border-radius: 4px  4px 0 0;
+        }
+    }
+
+    &__list {
+        padding: 10px 0;
+
+        &__item {
+            height: 46px;
+            border-bottom: 1px solid #dadada;
+            position: relative;
+            line-height: 46px;
+            padding: 0 45px 0 90px;
+
+            &:last-child {
+               border-bottom: 0 none;
+            }
+        }
+    }
+
+    &__position {
+        position: absolute;
+        display: block;
+        color: $pink;
+        font-weight: $bold;
+        font-size: 16px;
+        letter-spacing: 0.6px;
+        top: 0;
+        left: 30px;
+    }
+
+    &__name {
+        font-weight: $bold;
+        color: $brown;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__level {
+        position: absolute;
+        display: block;
+        color: white;
+        background: $orange;
+        font-weight: $bold;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        border-radius: 50%;
+        right: 20px;
+        top: 50%;
+        margin-top: -10px;
+    }
+}

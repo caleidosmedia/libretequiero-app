@@ -1,0 +1,47 @@
+.padding-g {
+    padding: $gutter;
+}
+
+.padding-s {
+    padding: $gutter $gutter/2;
+}
+
+.bg-pink {
+   background: $pink;
+}
+
+.no-animate {
+   -webkit-transition: none !important;
+   transition: none !important;
+}
+
+.title {
+    &__underline {
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        font-weight: $semibold;
+        position: relative;
+        display: block;
+        color: $pink;
+        line-height: 30px;
+
+        &:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: $pink;
+            left: 0;
+            bottom: 0;
+        }
+    }
+
+    &__page {
+        font-weight: $medium;
+        color: white;
+        text-align: center;
+        font-size: 24px;
+        letter-spacing: 0.9px;
+    }
+}

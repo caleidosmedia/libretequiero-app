@@ -1,0 +1,118 @@
+@font-face {
+    font-family: 'omnes';
+    src: url('../fonts/omnes-extralight.eot');
+    src: url('../fonts/omnes-extralight.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/omnes-extralight.woff') format('woff'),
+         url('../fonts/omnes-extralight.ttf') format('truetype'),
+         url('../fonts/omnes-extralight.svg#omnes-extralight100') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'omnes';
+    src: url('../fonts/omnes-light.eot');
+    src: url('../fonts/omnes-light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/omnes-light.woff') format('woff'),
+         url('../fonts/omnes-light.ttf') format('truetype'),
+         url('../fonts/omnes-light.svg#omnes-light200') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'omnes';
+    src: url('../fonts/omnes-medium.eot');
+    src: url('../fonts/omnes-medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/omnes-medium.woff') format('woff'),
+         url('../fonts/omnes-medium.ttf') format('truetype'),
+         url('../fonts/omnes-medium.svg#omnes-medium500') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'omnes';
+    src: url('../fonts/omnes-semibold.eot');
+    src: url('../fonts/omnes-semibold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/omnes-semibold.woff') format('woff'),
+         url('../fonts/omnes-semibold.ttf') format('truetype'),
+         url('../fonts/omnes-semibold.svg#omnes-semibold600') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'omnes';
+    src: url('../fonts/omnes-bold.eot');
+    src: url('../fonts/omnes-bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/omnes-bold.woff') format('woff'),
+         url('../fonts/omnes-bold.ttf') format('truetype'),
+         url('../fonts/omnes-bold.svg#omnes-bold700') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?iltsog');
+  src:  url('../fonts/icomoon.eot?iltsog#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?iltsog') format('truetype'),
+    url('../fonts/icomoon.woff?iltsog') format('woff'),
+    url('../fonts/icomoon.svg?iltsog#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-house:before {
+  content: "\e900";
+}
+.icon-note:before {
+  content: "\e901";
+}
+.icon-person:before {
+  content: "\e902";
+}
+.icon-bell:before {
+  content: "\e903";
+}
+.icon-check:before {
+  content: "\e904";
+}
+.icon-wrong:before {
+  content: "\e905";
+}
+.icon-people:before {
+  content: "\e906";
+}
+.icon-star:before {
+  content: "\e907";
+}
+.icon-crecient:before {
+  content: "\e908";
+}
+.icon-love:before {
+  content: "\e909";
+}
+.icon-hands:before {
+  content: "\e90a";
+}
+.icon-cloud:before {
+  content: "\e90b";
+}

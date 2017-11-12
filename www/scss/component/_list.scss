@@ -1,0 +1,45 @@
+.activities {
+    margin: 30px 0;
+    &__item {
+        position: relative;
+        padding-right: 55px;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+    }
+}
+
+.activity {
+    &__name {
+        font-size: 16px;
+        color: #1d1d26;
+        font-weight: $regular;
+    }
+
+    &__date {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-weight: $semibold;
+        color: #1d1d26;
+        font-size: 12px;
+    }
+
+    &__button {
+        font-size: 12px;
+        font-weight: $semibold;
+        color: $green;
+        text-decoration: none;
+        right: 0;
+        bottom: 0;
+        display: block;
+        position: absolute;
+    }
+}
+
+.list {
+    &__denuncias {
+        li {
+            margin-bottom: 30px;
+        }
+    }
+}

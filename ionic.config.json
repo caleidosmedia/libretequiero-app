@@ -1,0 +1,15 @@
+{
+  "name": "atrapaTuPlaca",
+  "app_id": "f8c8b9d0",
+  "type": "ionic1",
+  "integrations": {
+    "gulp": {},
+    "cordova": {}
+  },
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
+}

@@ -1,0 +1,46 @@
+.footer {
+    &__alert {
+        width: 100%;
+        padding: 10px 20px;
+        text-align: center;
+
+        &__img {
+            display: inline-block;
+            max-width: 40px;
+            height: auto;
+            width: 100%;
+        }
+
+        &__title {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__menu {
+        border: 0 none;
+        padding: 0;
+        height: 52px;
+
+        .menu__list {
+            width: 100%;
+        }
+    }
+
+    &__buttons {
+        height: 65px;
+        flex-wrap: wrap;
+        background-image: none;
+
+        & >.button+.button:last-child {
+            position: static;
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+        }
+
+        .button.button-block, .button.button-full {
+            margin: 0;
+        }
+    }
+}

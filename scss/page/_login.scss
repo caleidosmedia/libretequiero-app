@@ -1,0 +1,37 @@
+.login {
+    padding: $gutter;
+
+    &__inputs {
+        margin-bottom: 15px;
+    }
+
+    &__label {
+        display: block;
+
+        input {
+            width: 100%;
+            border: 1px solid $brown;
+            height: 40px;
+            border-radius: 4px;
+            padding: 10px 15px;
+            color: $brown;
+            font-weight: $bold;
+            font-size: 15px;
+        }
+    }
+
+    &__logo {
+        padding: 0 $gutter;
+        margin: 80px 0 45px 0;
+        text-align: center;
+        border-radius: 50%;
+        overflow: hidden;
+
+        &__img {
+            max-width: 100%;
+            display: inline-block;
+            height: auto;
+
+        }
+    }
+}

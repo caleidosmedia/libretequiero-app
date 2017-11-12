@@ -1,0 +1,138 @@
+.profile {
+    &__picture {
+        text-align: center;
+
+        &__img {
+            display: inline-block;
+            width: 80px;
+            height: auto;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+    }
+
+    &__name {
+        color: white;
+        font-size: 24px;
+        font-weight: $bold;
+        text-align: center;
+        margin-top: 5px;
+        letter-spacing: 0.9px;
+    }
+
+    &__level {
+        color: white;
+        font-size: 16px;
+        font-weight: $bold;
+        text-align: center;
+        margin-top: 5px;
+        letter-spacing: 0.9px;
+    }
+
+    &__ranking {
+        height: 72px;
+        background: $orange;
+        padding: 14px 5px;
+
+        &__text {
+            color: white;
+            line-height: 22px;
+            text-align: center;
+            width: 100%;
+            font-size: 18px;
+
+            span {
+                font-weight: $medium;
+            }
+
+            span,
+            strong {
+                display: block;
+            }
+        }
+    }
+
+    &__categorias {
+        display: block;
+        height: auto;
+        margin: 40px 0;
+        &:before {
+            content: "";
+            display: table;
+        }
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .profile__cat--box {
+            width: 25%;
+            float: left;
+            display: inline-block;
+            position: relative;
+            &.profile__active:before {
+                position: absolute;
+                top: -20px;
+                content: "";
+                background: url("../img/flecha.png") no-repeat;
+                left: 35%;
+                width: 18px;
+                height: 20px;
+                background-size: cover;
+            }
+            &.profile__active:after {
+                position: absolute;
+                bottom: -10px;
+                content: "";
+                background: url(../img/flecha.png) no-repeat;
+                left: 35%;
+                width: 0;
+                height: 0;
+                background-size: cover;
+                border-bottom: 8px solid #D5D4D6;
+                border-right: 8px solid transparent;
+                border-left: 8px solid transparent;
+            }
+            img {
+                width: 100%;
+            }
+        }
+    }
+    &__vinculo {
+        font-family: $base-font-family;
+        font-size: 12px;
+        font-weight: $bold;
+        letter-spacing: 1.3px;
+        display: block;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px 0 0 0;
+        clear: both;
+    }
+}
+
+.profile__categorias__house {
+    background: url(../img/fondo.png);
+    background-size: cover;
+    text-align: center;
+    padding: 15px;
+    margin: 10px 0 0 0;
+    width: 100%;
+    float: left;
+    height: 240px;
+    display: table;
+    .profile__house-box {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    img {
+        margin: 0 auto;
+        display: none;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .profile__active-img {
+        display: block;
+    }
+}

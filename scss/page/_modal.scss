@@ -1,0 +1,82 @@
+.modal {
+    &__content {
+        background: #6d380e;
+        height: 100vh;
+        padding: 15px;
+        position: relative;
+    }
+
+    &__box {
+        background: white;
+        height: calc(100vh - 30px);
+        padding: 0 10px 10px 10px;
+        h3 {
+            font-family: $base-font-family;
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 0.83;
+            letter-spacing: 1.4px;
+            text-align: center;
+            color: #6d380e;
+            clear: both;
+            margin: 0 0 30px 0;
+        }
+    }
+
+    &__feedback {
+        padding: 0 10px 0 20px;
+        font-family: $base-font-family;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1.36;
+        text-align: left;
+        color: #6d380e;
+
+        p {
+            margin: 0 0 16px 0;
+            span,
+            b,
+            strong {
+                color: #e5138e;
+                font-weight: bold;
+            }
+        }
+    }
+
+    &__next {
+        border-radius: 4px;
+        background-color: #e5138e;
+        font-family: $base-font-family;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: left;
+        color: #fff;
+        padding: 13px 20px;
+        text-decoration: none;
+        width: calc(100% - 48px);
+        display: block;
+        left: 24px;
+        text-align: center;
+        z-index: 6;
+        position: absolute;
+        bottom: 25px;
+    }
+
+}
+
+.img-boy-absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.closed__modal {
+    background: white;
+    border: none;
+    font-size: 31px;
+    padding: 0;
+    font-family: inherit;
+    color: #6d380e;
+    float: right;
+    margin: 0 0 3px 0;
+}

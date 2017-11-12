@@ -1,0 +1,54 @@
+.header {
+}
+
+.bar.bar-stable  {
+    background: $green;
+
+    .title {
+        text-transform: uppercase;
+        color: white;
+        font-weight: $bold;
+    }
+}
+
+.bar__large {
+    .bar.bar-stable .title {
+        margin-top: 16px;
+        font-size: 20px;
+    }
+
+    .bar-header{
+        height: 95px;
+        padding-top: 20px;
+    }
+
+    .has-header{
+        top:95px;
+    }
+
+    &__subtitle {
+        position: absolute;
+        z-index: 10;
+        color: white;
+        left: 0;
+        right: 0;
+        text-align: center;
+        top: 50px;
+        font-size: 18px;
+        font-weight: 300;
+    }
+
+    &__image {
+        position: absolute;
+        top: 31px;
+        z-index: 10;
+        right: 13px;
+        width: 49px;
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}

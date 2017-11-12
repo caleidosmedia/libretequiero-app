@@ -1,0 +1,73 @@
+.login {
+    .scroll-content {
+        background: white;
+        padding: 20px 30px 0 30px;
+    }
+
+    &__logo {
+        text-align: center;
+        margin: 0 -30px;
+
+        img {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    &__title {
+        color: $green;
+        text-align: center;
+        font-size: 30px;
+        font-weight: $light;
+    }
+
+    &__subtitle {
+        color: black;
+        text-align: center;
+        font-size: 14px;
+        font-weight: $regular;
+    }
+
+    &__form {
+        margin-top: 30px;
+
+        &__label {
+             color: #1d1d26;
+             letter-spacing: 1.5px;
+             font-size: 15px;
+             opacity: .5;
+             display: block;
+             position: relative;
+        }
+
+        &__group {
+            display: block;
+            border-bottom: solid 2px rgba(#1d1d26, .1);
+            margin-bottom: 30px;
+        }
+
+        &__input[type=text],
+        &__input[type=password] {
+            font-weight: $semibold;
+            font-size: 20px;
+            height: 40px;
+            line-height: 20px;
+            width: 100%;
+        }
+
+        &__input[disabled] {
+            background: white;
+        }
+    }
+
+    &__register {
+        font-size: 14px;
+        font-weight: $bold;
+        text-align: center;
+        color: $green;
+        display: block;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+}

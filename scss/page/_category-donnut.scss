@@ -1,0 +1,90 @@
+.category-kick-padding {
+    padding: 0 0 15px 0;
+}
+
+.category-bg-content {
+    width: 100%;
+    height: calc(100vh - 127px);
+    padding: 0 24px;
+}
+
+.category-title-box {
+    text-align: center;
+    z-index: 5;
+    position: relative;
+    padding: 125px 0 0 0;
+}
+
+.category-compromise {
+    font-family: $base-font-family;
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff;
+    margin: -20px 0 0 0;
+}
+
+.hands-img {
+    width: 165px;
+    margin: 0 auto;
+}
+
+.compromise-vinculo {
+    border-radius: 4px;
+    background-color: #e5138e;
+    font-family: $base-font-family;
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+    margin: 23px 0 0 0;
+}
+
+.icon__category {
+    &:before {
+        font-size: 190px;
+        color: white;
+    }
+    &.category-colour-white:before {
+        color: #6D3015;
+    }
+}
+
+.category-colour-white {
+    background: #F7F7F7;
+    p {
+        color: #6D3015;
+    }
+    .icon-cloud {
+        &:before {
+            font-size: 190px;
+            color: #6D3015;
+        }
+    }
+}
+
+.category-colour-celeste {
+    background: #80CCF0;
+}
+
+.category-colour-fucsia {
+    background: #E62896;
+    .compromise-vinculo {
+        background-color: #6d380e;
+    }
+}
+
+.category-colour-naranja {
+    background: #F58B33;
+}
+
+.category-colour-blue {
+    background: #47AEE8;
+}
+
+.category-colour-yellow {
+    background: #FEDE4E;
+}
+
