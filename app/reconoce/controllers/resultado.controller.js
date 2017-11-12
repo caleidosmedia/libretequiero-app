@@ -25,8 +25,10 @@
         $scope.filtros = {
             taxonomia: $stateParams.taxonomia,
             grupo: $stateParams.grupo,
-            color: $stateParams.color
+            color: $stateParams.color,
+            color_secundario: $stateParams.color_secundario
         };
+
 
         $scope.viewDetail = function () {
             return $scope.detail;
@@ -54,7 +56,7 @@
         };
 
         ReconoceService
-            .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color)
+            .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color, $stateParams.color_secundario)
             .then( function (data) {
                 console.log(data);
                 $scope.animals = data;
