@@ -15,7 +15,7 @@
 
         <div class="reconoce__pregunta" ng-if="animals.length > 1">
             <div class="reconoce__pregunta__lista">
-                <div class="reconoce__pregunta__columna reconoce__pregunta__columna--1" ng-repeat="animal in animals">
+                <div class="reconoce__pregunta__columna reconoce__pregunta__columna--1" ng-repeat="animal in animals" ng-click="goAnimal(animal.id)">
                     <div class="reconoce__pregunta__inner reconoce__pregunta__inner--result">
                        <div class="reconoce__pregunta__img">
                             <img src="{{animal.image_url}}" width="40" height="auto">

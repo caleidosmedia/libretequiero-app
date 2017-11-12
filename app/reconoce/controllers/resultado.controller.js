@@ -38,6 +38,13 @@
             $state.go(page);
         };
 
+        
+        $scope.goAnimal = function (n) {
+            $state.go('app.animal', {
+                id: n
+            });
+        };
+
         ReconoceService
             .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color)
             .then( function (data) {
