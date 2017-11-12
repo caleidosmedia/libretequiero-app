@@ -371,8 +371,11 @@
         };
 
         $scope.playSound = function () {
+            var nameSound = $scope.animals.scientific_name;
+                nameSound = nameSound.toLowerCase();
+                nameSound.replace(" ", "-");
             if (window.cordova) {
-                Sound.play($scope.animals.scientific_name, $scope.animals.scientific_name+'.mp3',false);
+                Sound.play(nameSound, nameSound+'.mp3',false);
             }
         };
 
@@ -381,8 +384,11 @@
             .then( function (data) {
                 console.log(data);
                 $scope.animals = data;
+                var nameSound = $scope.animals.scientific_name;
+                    nameSound = nameSound.toLowerCase();
+                    nameSound.replace(" ", "-");
                 if (window.cordova) {
-                    Sound.play(data.scientific_name, data.scientific_name+'.mp3',false);
+                    Sound.play(nameSound, nameSound+'.mp3',false);
                 }
             }).catch( function (error) {
 
@@ -544,8 +550,12 @@
         };
 
         $scope.playSound = function () {
+            var nameSound = $scope.animals[0].scientific_name;
+                nameSound = nameSound.toLowerCase();
+                nameSound.replace(" ", "-");
+
             if (window.cordova) {
-                Sound.play($scope.animals[0].scientific_name, $scope.animals[0].scientific_name+'.mp3',false);
+                Sound.play(nameSound, nameSound+'.mp3',false);
             }
         };
 
@@ -554,10 +564,13 @@
             .then( function (data) {
                 console.log(data);
                 $scope.animals = data;
+                var nameSound = $scope.animals[0].scientific_name;
+                    nameSound = nameSound.toLowerCase();
+                    nameSound.replace(" ", "-");
 
                 if ($scope.animals.length <= 1) {
                     if (window.cordova) {
-                        Sound.play(data[0].scientific_name, data[0].scientific_name+'.mp3',false);
+                        Sound.play(nameSound, nameSound+'.mp3',false);
                     }
                 }
 
