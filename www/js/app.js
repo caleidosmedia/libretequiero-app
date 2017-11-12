@@ -47,6 +47,28 @@
                 }
             })
 
+            .state('app.resultado', {
+                url: '/resultado/:taxonomia/:grupo/:color',
+                cache: false,
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/reconoce/views/resultado.html',
+                        controller: 'ResultadoController'
+                    }
+                }
+            })
+
+            .state('app.animal', {
+                url: '/animal/:id',
+                cache: false,
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/reconoce/views/animal.html',
+                        controller: 'AnimalController'
+                    }
+                }
+            })
+
         $urlRouterProvider.otherwise(function ($injector) {
             var $state = $injector.get("$state");
             $state.go("app.home");

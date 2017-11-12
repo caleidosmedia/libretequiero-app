@@ -48,11 +48,12 @@
 
     &__red {
         @extend .button__default;
-        background-color: #d0021b;
+        background-color: #ed2524;
+        border-radius: 4px;
 
         &.active,
         &.activated {
-            background-color: darken(#d0021b, 10%);
+            background-color: darken(#ed2524, 10%);
         }
     }
 }

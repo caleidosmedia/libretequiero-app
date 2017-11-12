@@ -1,0 +1,95 @@
+<ion-view view-title="RECONOCE" class="reconoce bar__large" hide-back-button="true">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+
+        <div class="bar__large__subtitle">Detector de especies</div>
+
+        <div class="bar__large__image">
+            <img src="img/loro_header.png">
+        </div>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="reconoce__pregunta__title">¿A qué grupo pertenece?</div>
+
+        <div class="reconoce__pregunta" ng-if="animals.length > 1">
+            <div class="reconoce__pregunta__lista">
+                <div class="reconoce__pregunta__columna reconoce__pregunta__columna--1" ng-repeat="animal in animals">
+                    <div class="reconoce__pregunta__inner reconoce__pregunta__inner--result">
+                       <div class="reconoce__pregunta__img">
+                            <img src="{{animal.image_url}}" width="40" height="auto">
+                        </div>
+
+                        <div class="reconoce__pregunta__name">{{animal.scientific_name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="reconoce__animal" ng-if="animals.length <= 1">
+            <div class="reconoce__animal__nombreCientifico">
+                {{animals[0].scientific_name }}
+            </div>
+            <div class="reconoce__animal__nombreComun" ng-if="animals[0].common_name">
+                ({{animals[0].common_name }})
+            </div>
+
+            <div class="reconoce__animal__img">
+                <img src="{{animals[0].image_url}}">
+            </div>
+
+            <div class="reconoce__animal__drop" ng-click="toggleDetail()">
+                Ver detalle <i ng-class="{'ion-ios-arrow-down': viewDetail(), 'ion-ios-arrow-right': !viewDetail() }"></i>
+            </div>
+
+            <div class="reconoce__animal__detalle" ng-if="viewDetail()">
+                <div class="reconoce__animal__item">
+                    <div class="reconoce__animal__titles">CATEGORÍA DE AMENAZA UICN</div>
+
+                    <img src="img/{{animals[0].category}}.svg">
+                </div>
+
+                <div class="reconoce__animal__item" ng-if="animals[0].common_name">
+                    <div class="reconoce__animal__titles">NOMBRE COMÚN</div>
+                    <p>{{animals[0].common_name }}</p>
+                </div>
+
+                <div class="reconoce__animal__item">
+                    <div class="reconoce__animal__titles">FAMILIA</div>
+                    <p>{{animals[0].family }}</p>
+                </div>
+
+                <div class="reconoce__animal__item">
+                    <div class="reconoce__animal__titles">CLASIFICACIÓN SUPERIOR</div>
+                    <p>{{animals[0].genus }}</p>
+                </div>
+
+                <div class="reconoce__animal__item">
+                    <div class="reconoce__animal__titles">ORDEN</div>
+                    <p>{{animals[0].order }}</p>
+                </div>
+            </div>
+
+            <div class="reconoce__animal__botones">
+                <button class="button__red button-block" ng-click="goTo('app.protege')">DENUNCIAR TRÁFICO ILEGAL</button>
+
+                <a class="button__text" href="#/app/reconoce">No, esta no es la especie.</a>
+            </div>
+        </div>
+
+        <div class="reconoce__footer" ng-if="filtros.taxonomia != null || filtros.grupo != null || filtros.color != null">
+            <ul class="reconoce__filters">
+                <li class="reconoce__filter" ng-if="filtros.taxonomia != null">
+                    <i class="ion-checkmark"></i> {{filtros.taxonomia}}
+                </li>
+                <li class="reconoce__filter" ng-if="filtros.grupo != null">
+                    <i class="ion-checkmark"></i> {{filtros.grupo}}
+                </li>
+                <li class="reconoce__filter" ng-if="filtros.color != null">
+                    <i class="ion-checkmark"></i> {{filtros.color}}
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>

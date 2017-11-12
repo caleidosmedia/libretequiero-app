@@ -7,12 +7,14 @@
 
     ReconoceController.$inject = [
         '$scope',
-        '$state'
+        '$state',
+        '$timeout'
     ];
 
     function ReconoceController(
         $scope,
-        $state
+        $state,
+        $timeout
     ) {
         $scope.pregunta = 1;
 
@@ -20,6 +22,14 @@
             taxonomia: null,
             grupo:null,
             color:null
+        };
+
+        $scope.customBack = function () {
+            if ($scope.pregunta === 1) {
+                $state.go("app.home");
+            } else {
+                $scope.pregunta = $scope.pregunta-1;
+            }
         };
 
         $scope.isQuestion = function (n) {
@@ -45,13 +55,29 @@
         $scope.setFilter = function (filter, value) {
             $scope.filtros[filter] = value;
 
-            if (filter == 'taxonomia') {
-                $scope.setQuestion(2);
-            }
+            $timeout(function () {
+                if (filter == 'taxonomia') {
+                    $scope.setQuestion(2);
+                }
 
-            if (filter == 'grupo' && $scope.filtros.taxonomia == 'aves') {
-                $scope.setQuestion(3);
-            }
+                if (filter == 'grupo' && $scope.filtros.taxonomia == 'aves') {
+                    $scope.setQuestion(3);
+                } else if (filter == 'grupo' && $scope.filtros.taxonomia != 'aves') {
+                    $state.go('app.resultado', {
+                        taxonomia:$scope.filtros.taxonomia,
+                        grupo:$scope.filtros.grupo,
+                        color: $scope.filtros.color
+                    });
+                }
+
+                if (filter == 'color') {
+                    $state.go('app.resultado', {
+                        taxonomia: $scope.filtros.taxonomia,
+                        grupo: $scope.filtros.grupo,
+                        color: $scope.filtros.color
+                    });
+                }
+            }, 500);
         };
     }
 })();
