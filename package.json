@@ -15,7 +15,6 @@
     "platforms": [
       "android"
     ]
-  }
 }
     "dependencies": {
         "cordova-android": "^6.2.3",
