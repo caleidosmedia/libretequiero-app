@@ -59,28 +59,6 @@
 
     angular
     .module('atrapa')
-    .controller('HomeController', HomeController);
-
-    HomeController.$inject = [
-        '$scope',
-        '$state'
-    ];
-
-    function HomeController(
-        $scope,
-        $state
-    ) {
-
-    }
-})();
-
-
-
-(function() {
-    'use strict';
-
-    angular
-    .module('atrapa')
     .controller('LayoutController', LayoutController);
 
     LayoutController.$inject = [
@@ -373,7 +351,7 @@
         $scope.playSound = function () {
             var nameSound = $scope.animals.scientific_name;
                 nameSound = nameSound.toLowerCase();
-                nameSound.replace(" ", "-");
+                nameSound = nameSound.replace(" ", "-");
             if (window.cordova) {
                 Sound.play(nameSound, nameSound+'.mp3',false);
             }
@@ -386,7 +364,7 @@
                 $scope.animals = data;
                 var nameSound = $scope.animals.scientific_name;
                     nameSound = nameSound.toLowerCase();
-                    nameSound.replace(" ", "-");
+                    nameSound = nameSound.replace(" ", "-");
                 if (window.cordova) {
                     Sound.play(nameSound, nameSound+'.mp3',false);
                 }
@@ -552,8 +530,8 @@
         $scope.playSound = function () {
             var nameSound = $scope.animals[0].scientific_name;
                 nameSound = nameSound.toLowerCase();
-                nameSound.replace(" ", "-");
-
+                nameSound = nameSound.replace(" ", "-");
+                console.log(nameSound);
             if (window.cordova) {
                 Sound.play(nameSound, nameSound+'.mp3',false);
             }
@@ -566,7 +544,7 @@
                 $scope.animals = data;
                 var nameSound = $scope.animals[0].scientific_name;
                     nameSound = nameSound.toLowerCase();
-                    nameSound.replace(" ", "-");
+                    nameSound = nameSound.replace(" ", "-");
 
                 if ($scope.animals.length <= 1) {
                     if (window.cordova) {
@@ -577,6 +555,28 @@
             }).catch( function (error) {
 
             });
+    }
+})();
+
+
+
+(function() {
+    'use strict';
+
+    angular
+    .module('atrapa')
+    .controller('HomeController', HomeController);
+
+    HomeController.$inject = [
+        '$scope',
+        '$state'
+    ];
+
+    function HomeController(
+        $scope,
+        $state
+    ) {
+
     }
 })();
 

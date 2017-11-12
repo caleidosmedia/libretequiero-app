@@ -39,7 +39,7 @@
         $scope.playSound = function () {
             var nameSound = $scope.animals.scientific_name;
                 nameSound = nameSound.toLowerCase();
-                nameSound.replace(" ", "-");
+                nameSound = nameSound.replace(" ", "-");
             if (window.cordova) {
                 Sound.play(nameSound, nameSound+'.mp3',false);
             }
@@ -52,7 +52,7 @@
                 $scope.animals = data;
                 var nameSound = $scope.animals.scientific_name;
                     nameSound = nameSound.toLowerCase();
-                    nameSound.replace(" ", "-");
+                    nameSound = nameSound.replace(" ", "-");
                 if (window.cordova) {
                     Sound.play(nameSound, nameSound+'.mp3',false);
                 }
