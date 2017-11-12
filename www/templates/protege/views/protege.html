@@ -52,7 +52,7 @@
 
             <label class="login__form__group">
                 <span class="login__form__label">¿QUÉ CLASE DE ANIMAL ES?</span>
-                <select class="login__form__select" ng-model="denuncia.clase">
+                <select class="login__form__select" ng-model="denuncia.clase" ng-change="cambioClase()">
                     <option value="anfibio">ANFIBIO</option>
                     <option value="reptil">REPTIL</option>
                     <option value="mamifero">MAMIFERO</option>
@@ -62,9 +62,10 @@
             </label>
 
             <label class="login__form__group">
-                <span class="login__form__label">¿QUÉ TIPO DE ANIMAL ES?</span>
+                <span class="login__form__label">¿A QUÉ GRUPO PERTENECE?</span>
                 <select class="login__form__select" ng-model="denuncia.grupo">
                     <option value="otros">OTRO</option>
+                    <option value="{{key}}" ng-repeat="(key,value) in grupo">{{value}}</option>
                 </select>
             </label>
 
