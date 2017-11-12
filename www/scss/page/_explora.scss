@@ -5,6 +5,70 @@
 
     &__filtros {
         background-color: white;
-        margin: -25px;
+        margin: -25px -25px 0;
+        padding: 20px;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+
+        &__button {
+            border: 1px solid #cbede0;
+            display: inline-block;
+            font-size: 16px;
+            color: #19b46b;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+    }
+
+    &__cards {
+        margin: 30px -5px 0 -5px;
+    }
+
+    &__card {
+        background-color: white;
+        height: 140px;
+        position: relative;
+        padding-left: 130px;
+        margin-top: 15px;
+        box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 4px;
+
+        &__img {
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            height: 110px;
+            width: 110px;
+
+            img {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &__name {
+            color: #19b46b;
+            font-size: 16px;
+            font-weight: bold;
+            padding-top: 15px;
+        }
+
+        &__detail {
+            color: #a2a2a2;
+            font-size: 14px;
+            font-weight: 300;
+            margin-top: 3px;
+        }
+
+        &__link {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+        }
     }
 }
