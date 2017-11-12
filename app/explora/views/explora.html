@@ -28,6 +28,12 @@
 
             </div>
         </div>
+
+        <ul>
+            <li ng-repeat="(key, animal) in animals">{{animal.scientific_name}}</li>
+        </ul>
+
+        <button ng-click="loadMore()">Ver mas</button>
     </ion-content>
 
 
