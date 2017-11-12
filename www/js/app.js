@@ -47,7 +47,6 @@
                 }
             })
 
-<<<<<<< HEAD
             .state('app.resultado', {
                 url: '/resultado/:taxonomia/:grupo/:color',
                 cache: false,
@@ -66,7 +65,10 @@
                     'menuContent': {
                         templateUrl: 'templates/reconoce/views/animal.html',
                         controller: 'AnimalController'
-=======
+                    }
+                }
+            })
+
             .state('app.protege', {
                 url: '/protege',
                 cache: false,
@@ -74,7 +76,6 @@
                     'menuContent': {
                         templateUrl: 'templates/protege/views/protege.html',
                         controller: 'ProtegeController'
->>>>>>> 045236a45dab1d3aa05d6d016f3b2481bf4f1963
                     }
                 }
             })

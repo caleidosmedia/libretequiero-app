@@ -37,7 +37,8 @@
                 "grupo": denuncia.grupo,
                 "estado": denuncia.estado,
                 "almacenamiento": denuncia.almacenamiento,
-                "descripcion": denuncia.descripcion
+                "descripcion": denuncia.descripcion,
+                "imagen": denuncia.imagen
             }
 
             return $http({
