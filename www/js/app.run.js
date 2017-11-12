@@ -13,38 +13,10 @@
         '$ionicPopup'
     ];
 
-    Sound.$inject = [
-        'baseUrl'
-    ];
-
-    function Sound(
-        baseUrl
-    ) {
+    function Sound() {
         var myMedias = {};
         var myMedia;
         var currentAudio;
-        var play1 = function (index,audio,loop) {
-           myMedia = new Media(baseUrl+'audios/'+audio,mediaSuccess,mediaError,mediaStatus);
-           myMedias[index] = myMedia;
-           console.log(currentAudio);
-           if(currentAudio!=undefined)
-                myMedias[currentAudio].pause();
-            currentAudio = index;
-            myMedias[index].play();
-            function mediaSuccess(data) {
-                console.log('mediaSuccess',data);
-            }
-            function mediaError(e) {
-                console.log('mediaError', e);
-            }
-            function mediaStatus(status) {
-                if(status === Media.MEDIA_STOPPED && loop) {
-                    myMedia.seekTo(0);
-                    myMedia.play();
-                }
-                console.log('status', JSON.stringify(arguments));
-            }
-        }
         var play = function (index,audio,loop) {
             if(currentAudio!=undefined)
                 window.plugins.NativeAudio.stop(currentAudio);
@@ -55,8 +27,7 @@
                 window.plugins.NativeAudio.play(index);
         }
         return {
-            play: play,
-            play1: play1
+            play: play
         }
     }
 
