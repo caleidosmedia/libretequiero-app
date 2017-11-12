@@ -1,0 +1,19 @@
+<ion-modal-view class="denunciar__modal">
+    <ion-header-bar class="denunciar__modal__header">
+        <div class="denunciar__modal__close ion-close" ng-click="closeSuccessForm()"></div>
+        <div class="denunciar__modal__title">DENUNCIA INGRESADA CON ÉXITO</div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="denunciar__modal__message">
+            
+        </div>
+
+        <div class="denunciar__modal__id">
+            Nro. de registro {{denunciar.id}}
+        </div>
+
+        <div class="denunciar__modal__ok">
+            <button ng-click="closeSuccessForm()" class="button button-block button__default">ACEPTAR</button>
+        </div>
+    </ion-content>
+</ion-modal-view>
