@@ -156,17 +156,24 @@
             }
         }
 
-        function search(taxonomia, grupo, color) {
+        function search(taxonomia, grupo, color, color_secundario) {
             if (color === null) {
                 var data = {
                     taxonomia: taxonomia,
                     grupo: grupo
                 };
-            } else {
+            } else if(color_secundario === null) {
                 var data = {
                     taxonomia: taxonomia,
                     grupo: grupo,
                     color: color
+                };
+            } else {
+                var data = {
+                    taxonomia: taxonomia,
+                    grupo: grupo,
+                    color: color,
+                    color_secundario: color_secundario
                 };
             }
 

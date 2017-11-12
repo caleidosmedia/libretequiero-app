@@ -48,7 +48,7 @@
             })
 
             .state('app.resultado', {
-                url: '/resultado/:taxonomia/:grupo/:color',
+                url: '/resultado/:taxonomia/:grupo/:color/:color_secundario',
                 cache: false,
                 views: {
                     'menuContent': {
