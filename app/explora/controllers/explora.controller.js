@@ -22,7 +22,9 @@
         function loadAnimals(page) {
 
             ExploraService.list(page).then( function (data) {
-                $scope.animales = data.data;
+                angular.forEach(data.data, function(animal, key) {
+                    $scope.animals.push(animal);
+                });
             }).catch( function (error) {
                 $ionicLoading.hide();
                 $ionicPopup.alert({
@@ -34,7 +36,12 @@
 
         loadAnimals($scope.currentPage);
 
-        $scope.animales = {};
+        $scope.loadMore = function() {
+            $scope.currentPage = $scope.currentPage + 1;
+            loadAnimals($scope.currentPage);
+        }
+
+        $scope.animals = [];
 
     }
 })();

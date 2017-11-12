@@ -25,13 +25,10 @@
         return service;
 
         function list(page) {
-            if (page === null) {
-                var data = {
-                    page: page,
-                };
-            } else {
-                var data = {};
-            }
+            
+            var data = {
+                page: page,
+            };
 
             return $http({
                 url: apiUrl+"animales",
