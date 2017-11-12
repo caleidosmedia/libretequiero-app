@@ -101,7 +101,7 @@
         };
         $scope.closeSuccessForm = function() {
             $scope.modalSuccess.hide();
-            $state.go("app.denuncias");
+            $state.go("app.home");
         };
 
         $ionicModal.fromTemplateUrl('templates/protege/views/map.html', {
@@ -159,7 +159,8 @@
                 "grupo": denuncia.grupo,
                 "estado": denuncia.estado,
                 "almacenamiento": denuncia.almacenamiento,
-                "descripcion": denuncia.comentarios
+                "descripcion": denuncia.comentarios,
+                "imagen": $scope.denuncia.imagen,
             }
             console.log(data);
 
@@ -207,7 +208,7 @@
         function takePicture() {
           var options = {
                 quality : 75,
-                destinationType : Camera.DestinationType.FILE_URI,
+                destinationType : Camera.DestinationType.DATA_URL,
                 sourceType : Camera.PictureSourceType.CAMERA,
                 allowEdit : false,
                 targetWidth: 1280,
@@ -215,23 +216,25 @@
                 saveToPhotoAlbum: false
             };
 
-            $cordovaCamera.getPicture(options).then(function(imageURI) {
-                $scope.denuncia.imgURI = imageURI;
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+                $scope.denuncia.imgURI =  'data:image/jpeg;base64,' + imageData;
+                $scope.denuncia.imagen = imageData;
             });
         }
 
         function uploadPicture() {
           var options = {
                 quality : 75,
-                destinationType : Camera.DestinationType.FILE_URI,
+                destinationType : Camera.DestinationType.DATA_URL,
                 sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
                 allowEdit : false,
                 targetWidth: 1280,
                 encodingType: Camera.EncodingType.JPEG
             };
 
-            $cordovaCamera.getPicture(options).then(function(imageURI) {
-                $scope.denuncia.imgURI = imageURI;
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+                $scope.denuncia.imgURI =  'data:image/jpeg;base64,' + imageData;
+                $scope.denuncia.imagen = imageData;
             });
         }
 

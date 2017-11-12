@@ -3,83 +3,6 @@
 
     angular
     .module('atrapa')
-    .factory('ReconoceService', ReconoceService);
-
-    ReconoceService.$inject = [
-        '$log',
-        '$http',
-        'apiUrl',
-        '$q'
-    ];
-
-    function ReconoceService(
-        $log,
-        $http,
-        apiUrl,
-        $q
-    ) {
-        var service = {
-            search: search,
-            searchID: searchID
-        };
-
-        return service;
-
-        function searchID(id) {
-            return $http({
-                url: apiUrl+id,
-                method: 'GET'
-            })
-            .then(infoSuccess)
-            .catch(infoFailed);
-
-            function infoSuccess(response) {
-                return response.data;
-            }
-
-            function infoFailed(error) {
-                return $q.reject(error);
-            }
-        }
-
-        function search(taxonomia, grupo, color) {
-            if (color === null) {
-                var data = {
-                    taxonomia: taxonomia,
-                    grupo: grupo
-                };
-            } else {
-                var data = {
-                    taxonomia: taxonomia,
-                    grupo: grupo,
-                    color: color
-                };
-            }
-
-            return $http({
-                url: apiUrl+"search",
-                method: 'GET',
-                params: data
-            })
-            .then(infoSuccess)
-            .catch(infoFailed);
-
-            function infoSuccess(response) {
-                return response.data;
-            }
-
-            function infoFailed(error) {
-                return $q.reject(error);
-            }
-        }
-    }
-})();
-
-(function() {
-    'use strict';
-
-    angular
-    .module('atrapa')
     .factory('DenunciarService', DenunciarService);
 
     DenunciarService.$inject = [
@@ -114,7 +37,8 @@
                 "grupo": denuncia.grupo,
                 "estado": denuncia.estado,
                 "almacenamiento": denuncia.almacenamiento,
-                "descripcion": denuncia.descripcion
+                "descripcion": denuncia.descripcion,
+                "imagen": denuncia.imagen
             }
 
             return $http({
@@ -134,5 +58,82 @@
             }
         }
 
+    }
+})();
+
+(function() {
+    'use strict';
+
+    angular
+    .module('atrapa')
+    .factory('ReconoceService', ReconoceService);
+
+    ReconoceService.$inject = [
+        '$log',
+        '$http',
+        'apiUrl',
+        '$q'
+    ];
+
+    function ReconoceService(
+        $log,
+        $http,
+        apiUrl,
+        $q
+    ) {
+        var service = {
+            search: search,
+            searchID: searchID
+        };
+
+        return service;
+
+        function searchID(id) {
+            return $http({
+                url: apiUrl+'animales/'+id,
+                method: 'GET'
+            })
+            .then(infoSuccess)
+            .catch(infoFailed);
+
+            function infoSuccess(response) {
+                return response.data;
+            }
+
+            function infoFailed(error) {
+                return $q.reject(error);
+            }
+        }
+
+        function search(taxonomia, grupo, color) {
+            if (color === null) {
+                var data = {
+                    taxonomia: taxonomia,
+                    grupo: grupo
+                };
+            } else {
+                var data = {
+                    taxonomia: taxonomia,
+                    grupo: grupo,
+                    color: color
+                };
+            }
+
+            return $http({
+                url: apiUrl+"animales/search",
+                method: 'GET',
+                params: data
+            })
+            .then(infoSuccess)
+            .catch(infoFailed);
+
+            function infoSuccess(response) {
+                return response.data;
+            }
+
+            function infoFailed(error) {
+                return $q.reject(error);
+            }
+        }
     }
 })();

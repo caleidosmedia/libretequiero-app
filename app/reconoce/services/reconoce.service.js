@@ -27,7 +27,7 @@
 
         function searchID(id) {
             return $http({
-                url: apiUrl+id,
+                url: apiUrl+'animales/'+id,
                 method: 'GET'
             })
             .then(infoSuccess)
@@ -57,7 +57,7 @@
             }
 
             return $http({
-                url: apiUrl+"search",
+                url: apiUrl+"animales/search",
                 method: 'GET',
                 params: data
             })
