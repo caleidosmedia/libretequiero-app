@@ -236,9 +236,39 @@
                 $scope.denuncia.imgURI =  'data:image/jpeg;base64,' + imageData;
                 $scope.denuncia.imagen = imageData;
             });
-        }
+        }   
+
+        $scope.grupos = {
+            'anfibio': {
+                'ranas': 'Ranas',
+            },
+            'aves': {
+                'loros-grandes-y-guacamayos': 'Loros grandes y guacamayos',
+                'loros-medianos-y-pequenos': 'Loros medianos y pequeños',
+                'rapaces': 'Gavilanes y Halcones',
+            },
+            'reptil': {
+                'caimanes': 'Caimanes',
+                'tortugas-de-rio': 'Tortugas de río',
+                'tortugas-terrestres': 'Tortugas terrestres'
+            },
+            'mamifero': {
+                'coaties': 'Coaties',
+                'felinos-menores': 'Felinos Menores',
+                'perezosos': 'Perezosos',
+                'primates-pequenos': 'Primates Pequeños',
+                'primtes-grandes-y-medianos': 'Primates Grandes y Medianos'
+            }
+        };
+
+        $scope.cambioClase = function () {
+            var clase = $scope.denuncia.clase;
+            $scope.grupo = $scope.grupos[clase];
+        };
 
         $scope.denuncia = {}
+
+        $scope.grupo = {}
 
        
     }
