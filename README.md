@@ -1,26 +1,41 @@
-Ionic App Base
-==============
+# Libre te quiero
 
-A starting project for Ionic that optionally supports using custom SCSS.
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-## Using this project
+Libre te quiero es una aplicación para reconocer la fauna silvestre peruana y realizar denuncias de tráfico ilegal.
 
-We recommend using the [Ionic CLI](https://github.com/ionic-team/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
+Este repositorio corresponde a la aplicación. El repositorio del backend y la api está ubicado en https://github.com/caleidosmedia/libretequiero-api.
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+# Screenshots
+![Home](http://caleidos.pe/libre-te-quiero/home.jpg) ![Reconoce](http://caleidos.pe/libre-te-quiero/reconoce.png)
 
-```bash
-$ npm install -g ionic cordova
+
+### Instalación
+
+El proyecto utiliza [Ionic](https://ionicframework.com/)
+
+Para realizar la instalación, luego de clonar el repositorio, se debe ingresar a la carpeta e instalar las dependencias via npm:
+
+```sh
+$ npm install -g cordova ionic
+$ npm install
 ```
 
-Then run:
-
-```bash
-$ ionic start myProject tabs --type=ionic1
+Para compilar los assets se debe utilizar el siguiente comando de gulp:  
+```sh
+$ gulp build
 ```
 
-More info on this can be found on the Ionic [Getting Started](https://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/ionic-team/ionic-cli) repo.
+Renombrar el archivo www/js/app.constant.example.js a www/js/app.constant.js y apuntar el parametro apiUrl donde se encuentre montado la api del proyecto.
 
-## Issues
+Para ver el proyecto en modo desarrollo utilizar los siguientes comando:
+```sh
+$ ionic serve
+```
+```sh
+$ gulp watch
+```
 
-Issues have been disabled on this repo. If you do find an issue or have a question, consider posting it on the [Ionic Forum](https://forum.ionicframework.com/). If there is truly an error, follow our guidelines for [submitting an issue](https://ionicframework.com/submit-issue/) to the main Ionic repository.
+Licencia
+----
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
