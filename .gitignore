@@ -4,5 +4,5 @@
 node_modules/
 platforms/
 plugins/
-www/js/app.constants.js
+www/js/app.constant.js
 google-services.json
