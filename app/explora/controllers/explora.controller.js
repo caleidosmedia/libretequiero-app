@@ -60,8 +60,6 @@
             return apiUrl + 'storage/animals/' + imageName + '.jpg';
         }
 
-        $scope.apiUrl = apiUrl;
-
     }
 })();
 

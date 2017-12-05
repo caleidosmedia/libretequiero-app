@@ -9,6 +9,7 @@
         '$scope',
         '$state',
         '$stateParams',
+        'apiUrl',
         'ReconoceService',
         'Sound'
     ];
@@ -17,6 +18,7 @@
         $scope,
         $state,
         $stateParams,
+        apiUrl,
         ReconoceService,
         Sound
     ) {
@@ -44,6 +46,15 @@
                 Sound.play(nameSound, nameSound+'.mp3',false);
             }
         };
+
+        $scope.animalImage = function(animal) {
+            if(animal.image_url == null) {
+                return 'img/transparent.png';
+            }
+
+            var imageName = animal.scientific_name.toString().replace(' ', '_');
+            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+        }
 
         ReconoceService
             .searchID($stateParams.id)
