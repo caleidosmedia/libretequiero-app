@@ -43,5 +43,26 @@
             </div>
         </ion-content>
     </ion-side-menu>
+
+
+    <ion-side-menu side="right">
+        <ion-content>
+            <ion-list class="menu__list">
+                <ion-item class="menu__list__item" menu-close ng-click="filter('filterAves')">
+                    AVES
+                </ion-item>
+                <ion-item class="menu__list__item" menu-close ng-click="filter('filterMammalia')">
+                    MAMIFEROS
+                </ion-item>
+                <ion-item class="menu__list__item" menu-close ng-click="filter('filterReptilia')">
+                    REPTILES
+                </ion-item>
+                <ion-item class="menu__list__item" menu-close ng-click="filter('filterAmphibia')">
+                    ANFIBIOS
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+
 </ion-side-menus>
 

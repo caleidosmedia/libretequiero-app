@@ -24,10 +24,11 @@
 
         return service;
 
-        function list(page) {
+        function list(page, animalClass) {
             
             var data = {
                 page: page,
+                class: animalClass,
             };
 
             return $http({

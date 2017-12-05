@@ -12,10 +12,12 @@
     </ion-nav-bar>
     <ion-content>
         <div class="explora__filtros">
-            <div class="explora__filtros__button">
+            <div class="explora__filtros__button" menu-toggle="right">
                 <i class="ion-android-options"></i> FILTROS
             </div>
         </div>
+
+        
 
         <div class="explora__cards">
             <div class="explora__card" ng-repeat="(key, animal) in animals" ng-click="goAnimal(animal.id)">
@@ -31,6 +33,5 @@
 
         <button ng-click="loadMore()" class="button__default button-block">Ver mas</button>
     </ion-content>
-
 
 </ion-view>
