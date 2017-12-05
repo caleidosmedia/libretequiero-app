@@ -42,6 +42,21 @@
                 Una iniciativa de La Sociedad Peruana de Derecho Ambiental (SPDA)
             </div>
         </ion-content>
+        <ion-footer-bar class="footer__menu">
+            <ion-list class="menu__list">
+                <ion-item class="menu__list__item">
+
+                    Modo {{statusName}}
+
+                    <label class="toggle toggle-balanced">
+                        <input type="checkbox" ng-model="status" ng-change="offlineToggle(status)">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </ion-item>
+            </ion-list>
+        </ion-footer-bar>
     </ion-side-menu>
 
 

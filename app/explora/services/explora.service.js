@@ -24,12 +24,18 @@
 
         return service;
 
-        function list(page, animalClass) {
-            
-            var data = {
-                page: page,
-                class: animalClass,
-            };
+        function list(page, animalClass = []) {
+
+            if (page === false) {
+                var data = {
+                    paginate: false
+                };
+            } else {
+                var data = {
+                    page: page,
+                    class: animalClass,
+                };
+            }
 
             return $http({
                 url: apiUrl+"animales",

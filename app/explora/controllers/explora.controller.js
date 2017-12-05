@@ -8,20 +8,24 @@
     ExploraController.$inject = [
         '$scope',
         '$state',
-        'apiUrl',
         'ExploraService',
         '$rootScope',
+        'Offline',
+        'apiUrl'
     ];
 
     function ExploraController(
         $scope,
         $state,
-        apiUrl,
         ExploraService,
-        $rootScope
+        $rootScope,
+        Offline,
+        apiUrl
     ) {
 
         $scope.currentPage = 1;
+        $scope.animals = [];
+        $scope.offline = Offline.isOffline();
 
         function loadAnimals(page) {
             var animalClass = [];
@@ -41,17 +45,32 @@
                 animalClass.push('REPTILIA');
             }
 
-            ExploraService.list(page, animalClass.toString()).then( function (data) {
-                angular.forEach(data.data, function(animal, key) {
-                    $scope.animals.push(animal);
+            if (Offline.isOffline()) {
+                var animals = Offline.getData();
+
+                if (page*5 >= animals.length) {
+                    for (var i = page*5-5; i < animals.length; i++) {
+                        $scope.animals.push(animals[i]);
+                    }
+                } else {
+                    for (var i = page*5-5; i < page*5; i++) {
+                        $scope.animals.push(animals[i]);
+                    }
+                }
+
+            } else {
+                ExploraService.list(page, animalClass.toString()).then( function (data) {
+                    angular.forEach(data.data, function(animal, key) {
+                        $scope.animals.push(animal);
+                    });
+                }).catch( function (error) {
+                    $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        title: 'Error',
+                        template: 'No se pudo encontrar animales'
+                    });
                 });
-            }).catch( function (error) {
-                $ionicLoading.hide();
-                $ionicPopup.alert({
-                    title: 'Error',
-                    template: 'No se pudo encontrar animales'
-                });
-            });
+            }
         }
 
         loadAnimals($scope.currentPage);
@@ -66,8 +85,6 @@
             $scope.currentPage = $scope.currentPage + 1;
             loadAnimals($scope.currentPage);
         }
-
-        $scope.animals = [];
 
         $scope.goAnimal = function (n) {
             $state.go('app.animal', {
