@@ -20,7 +20,7 @@
         if (window.localStorage['offline']) {
             var _status = window.localStorage['offline'];
         }
-        var setOffline = function (status) {
+        var setStatus = function (status) {
             _status = status;
             window.localStorage['offline'] = _status;
 
@@ -31,13 +31,24 @@
             }
         }
 
+        var setData = function (data) {
+            window.localStorage['data_animals'] = JSON.stringify(data);
+        };
+
+        var getData = function () {
+            return JSON.parse(window.localStorage['data_animals']);
+        };
+
         return {
+            setData: setData,
+            getData: getData,
             setStatus: setStatus,
             isOffline: function () {
                 return _status ? true : false;
             },
             removeOffline: function () {
                 window.localStorage.removeItem("offline");
+                window.localStorage.removeItem("data_animals");
                 _status = null;
             }
         }

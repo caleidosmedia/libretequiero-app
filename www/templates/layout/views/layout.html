@@ -46,13 +46,14 @@
             <ion-list class="menu__list">
                 <ion-item class="menu__list__item">
 
+                    Modo {{statusName}}
+
                     <label class="toggle toggle-balanced">
-                        <input type="checkbox">
+                        <input type="checkbox" ng-model="status" ng-change="offlineToggle(status)">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
                     </label>
-
                 </ion-item>
             </ion-list>
         </ion-footer-bar>

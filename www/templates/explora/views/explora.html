@@ -1,4 +1,4 @@
-<ion-view view-title="EXPLORA" class="explora bar__large" hide-back-button="true">
+<ion-view view-title="EXPLORA" cache-view="false" class="explora bar__large" hide-back-button="true">
     <ion-nav-bar class="bar-stable">
         <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
@@ -19,9 +19,14 @@
 
         <div class="explora__cards">
             <div class="explora__card" ng-repeat="(key, animal) in animals" ng-click="goAnimal(animal.id)">
-                <div class="explora__card__img">
-                    <img src="{{animal.image_url}}">
+                <div class="explora__card__img" ng-if="!offline">
+                    <img ng-src="{{animal.image_url}}">
                 </div>
+
+                <div class="explora__card__img" ng-if="offline">
+                    <img ng-src="img/animales/{{animal.scientific_name.split(' ').join('_')}}.jpg">
+                </div>
+
                 <div class="explora__card__name">{{animal.scientific_name}}</div>
                 <div class="explora__card__detail">{{animal.common_name}}</div>
                 <div class="explora__card__link">Ver detalle <i class="ion-ios-arrow-right"></i></div>

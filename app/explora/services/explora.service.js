@@ -25,10 +25,17 @@
         return service;
 
         function list(page) {
-            
-            var data = {
-                page: page,
-            };
+
+
+            if (page === false) {
+                var data = {
+                    paginate: false
+                };
+            } else {
+                var data = {
+                    page: page
+                };
+            }
 
             return $http({
                 url: apiUrl+"animales",
