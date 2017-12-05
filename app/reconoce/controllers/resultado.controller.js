@@ -10,7 +10,10 @@
         '$state',
         '$stateParams',
         'ReconoceService',
-        'Sound'
+        'Sound',
+        'Offline',
+        '$filter',
+        'apiUrl'
     ];
 
     function ResultadoController(
@@ -18,10 +21,14 @@
         $state,
         $stateParams,
         ReconoceService,
-        Sound
+        Sound,
+        Offline,
+        $filter,
+        apiUrl
     ) {
         $scope.animals = [];
         $scope.detail = false;
+        $scope.offline = Offline.isOffline();
         $scope.filtros = {
             taxonomia: $stateParams.taxonomia,
             grupo: $stateParams.grupo,
@@ -59,24 +66,55 @@
             }
         };
 
-        ReconoceService
-            .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color, $stateParams.color_secundario)
-            .then( function (data) {
-                console.log(data);
-                $scope.animals = data;
-                var nameSound = $scope.animals[0].scientific_name;
-                    nameSound = nameSound.toLowerCase();
-                    nameSound = nameSound.replace(" ", "-");
+        $scope.animalImage = function(animal) {
+            if(animal.image_url == null) {
+                return 'img/transparent.png';
+            }
 
-                if ($scope.animals.length <= 1) {
-                    if (window.cordova) {
-                        Sound.play(nameSound, nameSound+'.mp3',false);
-                    }
+            var imageName = animal.scientific_name.toString().replace(' ', '_');
+            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+        }
+
+        if (Offline.isOffline()) {
+            var animals = Offline.getData();
+            var found = $filter('filter')(animals, {
+                class: ($stateParams.taxonomia == "") ? null : $stateParams.taxonomia.toUpperCase(),
+                color_secundario: ($stateParams.color_secundario == "") ? null : $stateParams.color_secundario,
+                grupo: ($stateParams.grupo == "") ? null : $stateParams.grupo,
+                color: ($stateParams.color == "") ? null : $stateParams.color
+            }, true);
+
+            $scope.animals = found;
+            console.log(found);
+            var nameSound = $scope.animals[0].scientific_name;
+                nameSound = nameSound.toLowerCase();
+                nameSound = nameSound.replace(" ", "-");
+
+            if ($scope.animals.length <= 1) {
+                if (window.cordova) {
+                    Sound.play(nameSound, nameSound+'.mp3',false);
                 }
+            }
+        } else {
+            ReconoceService
+                .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color, $stateParams.color_secundario)
+                .then( function (data) {
+                    console.log(data);
+                    $scope.animals = data;
+                    var nameSound = $scope.animals[0].scientific_name;
+                        nameSound = nameSound.toLowerCase();
+                        nameSound = nameSound.replace(" ", "-");
 
-            }).catch( function (error) {
+                    if ($scope.animals.length <= 1) {
+                        if (window.cordova) {
+                            Sound.play(nameSound, nameSound+'.mp3',false);
+                        }
+                    }
 
-            });
+                }).catch( function (error) {
+
+                });
+        }
     }
 })();
 

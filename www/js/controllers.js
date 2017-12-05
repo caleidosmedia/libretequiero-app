@@ -86,120 +86,6 @@
 
     angular
     .module('atrapa')
-    .controller('LayoutController', LayoutController);
-
-    LayoutController.$inject = [
-        '$scope',
-        '$state',
-        '$rootScope',
-        'Offline',
-        '$ionicLoading',
-        'ExploraService',
-        '$ionicPopup'
-    ];
-
-    function LayoutController(
-        $scope,
-        $state,
-        $rootScope,
-        Offline,
-        $ionicLoading,
-        ExploraService,
-        $ionicPopup
-    ) {
-        $scope.goState = function (page) {
-            $state.go(page);
-        };
-
-        if (Offline.isOffline()) {
-            $scope.status = false;
-            $scope.statusName = "Offline";
-        } else {
-            $scope.status = true;
-            $scope.statusName = "Online";
-        }
-
-        $scope.offlineToggle = function (status) {
-            if (status) {
-                Offline.removeOffline();
-                $scope.statusName = "Online";
-            } else {
-                $ionicLoading.show({
-                    template:"cargando...",
-                    noBackdrop: true
-                });
-
-                ExploraService.list(false).then( function (data) {
-                    Offline.setData(data);
-                    $ionicLoading.hide();
-
-                    /*var currentRequest = 0;
-                    makeNextRequest();
-
-                    function makeNextRequest() {
-                        var url = data.data[currentRequest].image_url;
-                        var nameImage = data.data[currentRequest].scientific_name.split(' ').join('_');
-                        var targetPath = cordova.file.documentsDirectory + nameImage+ ".jpg";
-                        var trustHosts = true;
-                        var options = {};
-
-                        $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
-                            .then(function(result) {
-                                currentRequest++;
-                                if (currentRequest < data.data.length) {
-                                    makeNextRequest();
-                                } else {
-                                    $ionicLoading.hide();
-                                }
-                            }, function(err) {
-
-                            }, function (progress) {
-
-                            });
-                    }*/
-                }).catch( function (error) {
-                    $ionicLoading.hide();
-                    $ionicPopup.alert({
-                        title: 'Error',
-                        template: 'No se pudo encontrar animales'
-                    });
-                });
-                Offline.setStatus(1);
-                $scope.statusName = "Offline";
-            }
-        };
-    }
-})();
-
-
-
-(function() {
-    'use strict';
-
-    angular
-    .module('atrapa')
-    .controller('HomeController', HomeController);
-
-    HomeController.$inject = [
-        '$scope',
-        '$state'
-    ];
-
-    function HomeController(
-        $scope,
-        $state
-    ) {
-
-    }
-})();
-
-
-
-(function() {
-    'use strict';
-
-    angular
-    .module('atrapa')
     .controller('ProtegeController', ProtegeController);
 
     ProtegeController.$inject = [
@@ -432,6 +318,98 @@
 
     angular
     .module('atrapa')
+    .controller('LayoutController', LayoutController);
+
+    LayoutController.$inject = [
+        '$scope',
+        '$state',
+        '$rootScope',
+        'Offline',
+        '$ionicLoading',
+        'ExploraService',
+        '$ionicPopup'
+    ];
+
+    function LayoutController(
+        $scope,
+        $state,
+        $rootScope,
+        Offline,
+        $ionicLoading,
+        ExploraService,
+        $ionicPopup
+    ) {
+        $scope.goState = function (page) {
+            $state.go(page);
+        };
+
+        if (Offline.isOffline()) {
+            $scope.status = false;
+            $scope.statusName = "Offline";
+        } else {
+            $scope.status = true;
+            $scope.statusName = "Online";
+        }
+
+        $scope.offlineToggle = function (status) {
+            if (status) {
+                Offline.removeOffline();
+                $scope.statusName = "Online";
+            } else {
+                $ionicLoading.show({
+                    template:"cargando...",
+                    noBackdrop: true
+                });
+
+                ExploraService.list(false).then( function (data) {
+                    Offline.setData(data);
+                    $ionicLoading.hide();
+
+                    /*var currentRequest = 0;
+                    makeNextRequest();
+
+                    function makeNextRequest() {
+                        var url = data.data[currentRequest].image_url;
+                        var nameImage = data.data[currentRequest].scientific_name.split(' ').join('_');
+                        var targetPath = cordova.file.documentsDirectory + nameImage+ ".jpg";
+                        var trustHosts = true;
+                        var options = {};
+
+                        $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+                            .then(function(result) {
+                                currentRequest++;
+                                if (currentRequest < data.data.length) {
+                                    makeNextRequest();
+                                } else {
+                                    $ionicLoading.hide();
+                                }
+                            }, function(err) {
+
+                            }, function (progress) {
+
+                            });
+                    }*/
+                }).catch( function (error) {
+                    $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        title: 'Error',
+                        template: 'No se pudo encontrar animales'
+                    });
+                });
+                Offline.setStatus(1);
+                $scope.statusName = "Offline";
+            }
+        };
+    }
+})();
+
+
+
+(function() {
+    'use strict';
+
+    angular
+    .module('atrapa')
     .controller('AnimalController', AnimalController);
 
     AnimalController.$inject = [
@@ -440,7 +418,9 @@
         '$stateParams',
         'apiUrl',
         'ReconoceService',
-        'Sound'
+        'Sound',
+        'Offline',
+        '$filter'
     ];
 
     function AnimalController(
@@ -449,11 +429,14 @@
         $stateParams,
         apiUrl,
         ReconoceService,
-        Sound
+        Sound,
+        Offline,
+        $filter
     ) {
         $scope.animals = [];
         $scope.detail = false;
         $scope.animalID = $stateParams.id;
+        $scope.offline = Offline.isOffline();
 
         $scope.viewDetail = function () {
             return $scope.detail;
@@ -482,13 +465,32 @@
             }
 
             var imageName = animal.scientific_name.toString().replace(' ', '_');
-            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            if (Offline.isOffline()) {
+                return 'img/animales/' + imageName + '.jpg';
+            } else {
+                return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            }
         }
 
-        ReconoceService
+
+
+        if (Offline.isOffline()) {
+            var animals = Offline.getData();
+            var found = $filter('filter')(animals, {"id": parseInt($stateParams.id)}, true);
+
+            $scope.animals = found[0];
+
+            console.log($scope.animals);
+            var nameSound = $scope.animals.scientific_name;
+                nameSound = nameSound.toLowerCase();
+                nameSound = nameSound.replace(" ", "-");
+            if (window.cordova) {
+                Sound.play(nameSound, nameSound+'.mp3',false);
+            }
+        } else {
+            ReconoceService
             .searchID($stateParams.id)
             .then( function (data) {
-                console.log(data);
                 $scope.animals = data;
                 var nameSound = $scope.animals.scientific_name;
                     nameSound = nameSound.toLowerCase();
@@ -499,6 +501,8 @@
             }).catch( function (error) {
 
             });
+        }
+
     }
 })();
 
@@ -616,7 +620,10 @@
         '$state',
         '$stateParams',
         'ReconoceService',
-        'Sound'
+        'Sound',
+        'Offline',
+        '$filter',
+        'apiUrl'
     ];
 
     function ResultadoController(
@@ -624,10 +631,14 @@
         $state,
         $stateParams,
         ReconoceService,
-        Sound
+        Sound,
+        Offline,
+        $filter,
+        apiUrl
     ) {
         $scope.animals = [];
         $scope.detail = false;
+        $scope.offline = Offline.isOffline();
         $scope.filtros = {
             taxonomia: $stateParams.taxonomia,
             grupo: $stateParams.grupo,
@@ -665,24 +676,77 @@
             }
         };
 
-        ReconoceService
-            .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color, $stateParams.color_secundario)
-            .then( function (data) {
-                console.log(data);
-                $scope.animals = data;
-                var nameSound = $scope.animals[0].scientific_name;
-                    nameSound = nameSound.toLowerCase();
-                    nameSound = nameSound.replace(" ", "-");
+        $scope.animalImage = function(animal) {
+            if(animal.image_url == null) {
+                return 'img/transparent.png';
+            }
 
-                if ($scope.animals.length <= 1) {
-                    if (window.cordova) {
-                        Sound.play(nameSound, nameSound+'.mp3',false);
-                    }
+            var imageName = animal.scientific_name.toString().replace(' ', '_');
+            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+        }
+
+        if (Offline.isOffline()) {
+            var animals = Offline.getData();
+            var found = $filter('filter')(animals, {
+                class: ($stateParams.taxonomia == "") ? null : $stateParams.taxonomia.toUpperCase(),
+                color_secundario: ($stateParams.color_secundario == "") ? null : $stateParams.color_secundario,
+                grupo: ($stateParams.grupo == "") ? null : $stateParams.grupo,
+                color: ($stateParams.color == "") ? null : $stateParams.color
+            }, true);
+
+            $scope.animals = found;
+            console.log(found);
+            var nameSound = $scope.animals[0].scientific_name;
+                nameSound = nameSound.toLowerCase();
+                nameSound = nameSound.replace(" ", "-");
+
+            if ($scope.animals.length <= 1) {
+                if (window.cordova) {
+                    Sound.play(nameSound, nameSound+'.mp3',false);
                 }
+            }
+        } else {
+            ReconoceService
+                .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color, $stateParams.color_secundario)
+                .then( function (data) {
+                    console.log(data);
+                    $scope.animals = data;
+                    var nameSound = $scope.animals[0].scientific_name;
+                        nameSound = nameSound.toLowerCase();
+                        nameSound = nameSound.replace(" ", "-");
 
-            }).catch( function (error) {
+                    if ($scope.animals.length <= 1) {
+                        if (window.cordova) {
+                            Sound.play(nameSound, nameSound+'.mp3',false);
+                        }
+                    }
 
-            });
+                }).catch( function (error) {
+
+                });
+        }
+    }
+})();
+
+
+
+(function() {
+    'use strict';
+
+    angular
+    .module('atrapa')
+    .controller('HomeController', HomeController);
+
+    HomeController.$inject = [
+        '$scope',
+        '$state'
+    ];
+
+    function HomeController(
+        $scope,
+        $state
+    ) {
+
     }
 })();
 

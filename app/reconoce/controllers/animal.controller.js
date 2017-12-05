@@ -11,7 +11,9 @@
         '$stateParams',
         'apiUrl',
         'ReconoceService',
-        'Sound'
+        'Sound',
+        'Offline',
+        '$filter'
     ];
 
     function AnimalController(
@@ -20,11 +22,14 @@
         $stateParams,
         apiUrl,
         ReconoceService,
-        Sound
+        Sound,
+        Offline,
+        $filter
     ) {
         $scope.animals = [];
         $scope.detail = false;
         $scope.animalID = $stateParams.id;
+        $scope.offline = Offline.isOffline();
 
         $scope.viewDetail = function () {
             return $scope.detail;
@@ -53,13 +58,32 @@
             }
 
             var imageName = animal.scientific_name.toString().replace(' ', '_');
-            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            if (Offline.isOffline()) {
+                return 'img/animales/' + imageName + '.jpg';
+            } else {
+                return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            }
         }
 
-        ReconoceService
+
+
+        if (Offline.isOffline()) {
+            var animals = Offline.getData();
+            var found = $filter('filter')(animals, {"id": parseInt($stateParams.id)}, true);
+
+            $scope.animals = found[0];
+
+            console.log($scope.animals);
+            var nameSound = $scope.animals.scientific_name;
+                nameSound = nameSound.toLowerCase();
+                nameSound = nameSound.replace(" ", "-");
+            if (window.cordova) {
+                Sound.play(nameSound, nameSound+'.mp3',false);
+            }
+        } else {
+            ReconoceService
             .searchID($stateParams.id)
             .then( function (data) {
-                console.log(data);
                 $scope.animals = data;
                 var nameSound = $scope.animals.scientific_name;
                     nameSound = nameSound.toLowerCase();
@@ -70,6 +94,8 @@
             }).catch( function (error) {
 
             });
+        }
+
     }
 })();
 

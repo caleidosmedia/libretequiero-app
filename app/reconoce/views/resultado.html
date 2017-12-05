@@ -18,7 +18,7 @@
                 <div class="reconoce__pregunta__columna reconoce__pregunta__columna--1" ng-repeat="animal in animals" ng-click="goAnimal(animal.id)">
                     <div class="reconoce__pregunta__inner reconoce__pregunta__inner--result">
                        <div class="reconoce__pregunta__img">
-                            <img src="{{animal.image_url}}" width="40" height="auto">
+                            <img ng-src="{{animalImage(animal)}}" width="40" height="auto">
                         </div>
 
                         <div class="reconoce__pregunta__name">{{animal.scientific_name}}</div>
@@ -38,14 +38,14 @@
             </div>
 
             <div class="reconoce__animal__img">
-                <img src="{{animals[0].image_url}}">
+                <img ng-src="{{ animalImage(animals[0]) }}">
             </div>
 
             <div class="reconoce__animal__drop" ng-click="toggleDetail()">
                 Ver detalle <i ng-class="{'ion-ios-arrow-down': viewDetail(), 'ion-ios-arrow-right': !viewDetail() }"></i>
             </div>
 
-            <div class="reconoce__animal__sound" ng-click="playSound()">
+            <div class="reconoce__animal__sound" ng-if="animals[0].audio == '1'" ng-click="playSound()">
                 <img src="img/play.png">
             </div>
 
