@@ -24,16 +24,16 @@
 
         return service;
 
-        function list(page) {
-
-
+        function list(page, animalClass = [], peligro = []) {
             if (page === false) {
                 var data = {
                     paginate: false
                 };
             } else {
                 var data = {
-                    page: page
+                    page: page,
+                    class: animalClass,
+                    category: peligro
                 };
             }
 
