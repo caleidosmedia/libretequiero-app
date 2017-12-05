@@ -326,6 +326,7 @@
         'NgMap',
         '$cordovaCamera',
         'DenunciarService',
+        'Offline'
     ];
 
     function ProtegeController(
@@ -337,21 +338,26 @@
         $timeout,
         NgMap,
         $cordovaCamera,
-        DenunciarService
-    ) {
+        DenunciarService,
+        Offline
 
-        var directionsService = new google.maps.DirectionsService();
-        function fx(latLng) {
-            var request = {
-                origin:latLng,
-                destination:latLng,
-                travelMode: google.maps.DirectionsTravelMode.DRIVING
-            };
-            directionsService.route(request, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    $scope.denuncia.direccion = response.routes[0].summary;
-                }
-            });
+    ) {
+        $scope.offline = Offline.isOffline();
+
+        if (!Offline.isOffline()) {
+            var directionsService = new google.maps.DirectionsService();
+            function fx(latLng) {
+                var request = {
+                    origin:latLng,
+                    destination:latLng,
+                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                };
+                directionsService.route(request, function(response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        $scope.denuncia.direccion = response.routes[0].summary;
+                    }
+                });
+            }
         }
 
         $ionicModal.fromTemplateUrl('templates/protege/views/success.html', {
@@ -382,12 +388,14 @@
         };
 
         $scope.$on('modal.shown', function() {
-            NgMap.getMap().then(function(map) {
-                $scope.map = map;
-                $scope.map.markers[0].setPosition(new google.maps.LatLng($scope.location[0], $scope.location[1]));
-                $scope.map.setCenter({lat: $scope.location[0], lng: $scope.location[1]});
-                $scope.map.setZoom(18);
-            });
+            if (!Offline.isOffline()) {
+                NgMap.getMap().then(function(map) {
+                    $scope.map = map;
+                    $scope.map.markers[0].setPosition(new google.maps.LatLng($scope.location[0], $scope.location[1]));
+                    $scope.map.setCenter({lat: $scope.location[0], lng: $scope.location[1]});
+                    $scope.map.setZoom(18);
+                });
+            }
         });
 
         $scope.closeMap = function() {
@@ -501,7 +509,7 @@
                 $scope.denuncia.imgURI =  'data:image/jpeg;base64,' + imageData;
                 $scope.denuncia.imagen = imageData;
             });
-        }   
+        }
 
         $scope.grupos = {
             'anfibio': {
@@ -535,7 +543,7 @@
 
         $scope.grupo = {}
 
-       
+
     }
 })();
 
@@ -818,25 +826,31 @@
             }
 
             var imageName = animal.scientific_name.toString().replace(' ', '_');
-            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            if (Offline.isOffline()) {
+                return 'img/animales/' + imageName + '.jpg';
+            } else {
+                return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            }
         }
 
         if (Offline.isOffline()) {
             var animals = Offline.getData();
+            var color_secundario = ($stateParams.color == "amarillo") ? "azul" : $stateParams.color_secundario;
             var found = $filter('filter')(animals, {
                 class: ($stateParams.taxonomia == "") ? null : $stateParams.taxonomia.toUpperCase(),
-                color_secundario: ($stateParams.color_secundario == "") ? null : $stateParams.color_secundario,
+                color_secundario: (color_secundario == "") ? null : color_secundario,
                 grupo: ($stateParams.grupo == "") ? null : $stateParams.grupo,
                 color: ($stateParams.color == "") ? null : $stateParams.color
             }, true);
 
             $scope.animals = found;
             console.log(found);
-            var nameSound = $scope.animals[0].scientific_name;
+
+            if ($scope.animals.length == 1) {
+                var nameSound = $scope.animals[0].scientific_name;
                 nameSound = nameSound.toLowerCase();
                 nameSound = nameSound.replace(" ", "-");
 
-            if ($scope.animals.length <= 1) {
                 if (window.cordova) {
                     Sound.play(nameSound, nameSound+'.mp3',false);
                 }
@@ -847,11 +861,12 @@
                 .then( function (data) {
                     console.log(data);
                     $scope.animals = data;
-                    var nameSound = $scope.animals[0].scientific_name;
+
+                    if ($scope.animals.length === 1) {
+                        var nameSound = $scope.animals[0].scientific_name;
                         nameSound = nameSound.toLowerCase();
                         nameSound = nameSound.replace(" ", "-");
 
-                    if ($scope.animals.length <= 1) {
                         if (window.cordova) {
                             Sound.play(nameSound, nameSound+'.mp3',false);
                         }

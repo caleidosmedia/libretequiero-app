@@ -72,25 +72,31 @@
             }
 
             var imageName = animal.scientific_name.toString().replace(' ', '_');
-            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            if (Offline.isOffline()) {
+                return 'img/animales/' + imageName + '.jpg';
+            } else {
+                return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            }
         }
 
         if (Offline.isOffline()) {
             var animals = Offline.getData();
+            var color_secundario = ($stateParams.color == "amarillo") ? "azul" : $stateParams.color_secundario;
             var found = $filter('filter')(animals, {
                 class: ($stateParams.taxonomia == "") ? null : $stateParams.taxonomia.toUpperCase(),
-                color_secundario: ($stateParams.color_secundario == "") ? null : $stateParams.color_secundario,
+                color_secundario: (color_secundario == "") ? null : color_secundario,
                 grupo: ($stateParams.grupo == "") ? null : $stateParams.grupo,
                 color: ($stateParams.color == "") ? null : $stateParams.color
             }, true);
 
             $scope.animals = found;
             console.log(found);
-            var nameSound = $scope.animals[0].scientific_name;
+
+            if ($scope.animals.length == 1) {
+                var nameSound = $scope.animals[0].scientific_name;
                 nameSound = nameSound.toLowerCase();
                 nameSound = nameSound.replace(" ", "-");
 
-            if ($scope.animals.length <= 1) {
                 if (window.cordova) {
                     Sound.play(nameSound, nameSound+'.mp3',false);
                 }
@@ -101,11 +107,12 @@
                 .then( function (data) {
                     console.log(data);
                     $scope.animals = data;
-                    var nameSound = $scope.animals[0].scientific_name;
+
+                    if ($scope.animals.length === 1) {
+                        var nameSound = $scope.animals[0].scientific_name;
                         nameSound = nameSound.toLowerCase();
                         nameSound = nameSound.replace(" ", "-");
 
-                    if ($scope.animals.length <= 1) {
                         if (window.cordova) {
                             Sound.play(nameSound, nameSound+'.mp3',false);
                         }

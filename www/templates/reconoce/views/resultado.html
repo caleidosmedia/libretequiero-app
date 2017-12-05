@@ -27,9 +27,9 @@
             </div>
         </div>
 
-        <div class="reconoce__pregunta__title" ng-if="animals.length <= 1">¿Es esta la especie?</div>
+        <div class="reconoce__pregunta__title" ng-if="animals.length === 1">¿Es esta la especie?</div>
 
-        <div class="reconoce__animal" ng-if="animals.length <= 1">
+        <div class="reconoce__animal" ng-if="animals.length === 1">
             <div class="reconoce__animal__nombreCientifico">
                 {{animals[0].scientific_name }}
             </div>
@@ -53,7 +53,7 @@
                 <div class="reconoce__animal__item">
                     <div class="reconoce__animal__titles">CATEGORÍA DE AMENAZA UICN</div>
 
-                    <img src="img/{{animals[0].category}}.svg">
+                    <img ng-src="img/{{animals[0].category.toUpperCase()}}.svg">
                 </div>
 
                 <div class="reconoce__animal__item" ng-if="animals[0].common_name">

@@ -15,6 +15,7 @@
         'NgMap',
         '$cordovaCamera',
         'DenunciarService',
+        'Offline'
     ];
 
     function ProtegeController(
@@ -26,21 +27,26 @@
         $timeout,
         NgMap,
         $cordovaCamera,
-        DenunciarService
-    ) {
+        DenunciarService,
+        Offline
 
-        var directionsService = new google.maps.DirectionsService();
-        function fx(latLng) {
-            var request = {
-                origin:latLng,
-                destination:latLng,
-                travelMode: google.maps.DirectionsTravelMode.DRIVING
-            };
-            directionsService.route(request, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    $scope.denuncia.direccion = response.routes[0].summary;
-                }
-            });
+    ) {
+        $scope.offline = Offline.isOffline();
+
+        if (!Offline.isOffline()) {
+            var directionsService = new google.maps.DirectionsService();
+            function fx(latLng) {
+                var request = {
+                    origin:latLng,
+                    destination:latLng,
+                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                };
+                directionsService.route(request, function(response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        $scope.denuncia.direccion = response.routes[0].summary;
+                    }
+                });
+            }
         }
 
         $ionicModal.fromTemplateUrl('templates/protege/views/success.html', {
@@ -71,12 +77,14 @@
         };
 
         $scope.$on('modal.shown', function() {
-            NgMap.getMap().then(function(map) {
-                $scope.map = map;
-                $scope.map.markers[0].setPosition(new google.maps.LatLng($scope.location[0], $scope.location[1]));
-                $scope.map.setCenter({lat: $scope.location[0], lng: $scope.location[1]});
-                $scope.map.setZoom(18);
-            });
+            if (!Offline.isOffline()) {
+                NgMap.getMap().then(function(map) {
+                    $scope.map = map;
+                    $scope.map.markers[0].setPosition(new google.maps.LatLng($scope.location[0], $scope.location[1]));
+                    $scope.map.setCenter({lat: $scope.location[0], lng: $scope.location[1]});
+                    $scope.map.setZoom(18);
+                });
+            }
         });
 
         $scope.closeMap = function() {
@@ -190,7 +198,7 @@
                 $scope.denuncia.imgURI =  'data:image/jpeg;base64,' + imageData;
                 $scope.denuncia.imagen = imageData;
             });
-        }   
+        }
 
         $scope.grupos = {
             'anfibio': {
@@ -224,7 +232,7 @@
 
         $scope.grupo = {}
 
-       
+
     }
 })();
 

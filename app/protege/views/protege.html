@@ -11,7 +11,10 @@
         </div>
     </ion-nav-bar>
     <ion-content>
-        <form class="denunciar__form" ng-submit="denunciar(denuncia)">
+        <p ng-if="offline">
+            Activa el modo Online para realizar tu denuncia.
+        </p>
+        <form class="denunciar__form" ng-submit="denunciar(denuncia)" ng-if="!offline">
             <p>Brinda información sobre los lugares donde se venden o se tienen en cautiverio animales silvestres de origen ilegal.</p>
 
             <div class="login__form__group">
