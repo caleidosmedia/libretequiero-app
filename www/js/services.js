@@ -25,7 +25,6 @@
         return service;
 
         function list(page, animalClass = [], peligro = []) {
-
             if (page === false) {
                 var data = {
                     paginate: false

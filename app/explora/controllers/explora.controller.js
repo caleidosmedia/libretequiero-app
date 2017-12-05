@@ -11,7 +11,8 @@
         'ExploraService',
         '$rootScope',
         'Offline',
-        'apiUrl'
+        'apiUrl',
+        '$filter'
     ];
 
     function ExploraController(
@@ -20,7 +21,8 @@
         ExploraService,
         $rootScope,
         Offline,
-        apiUrl
+        apiUrl,
+        $filter
     ) {
 
         $scope.currentPage = 1;
@@ -66,14 +68,20 @@
 
             if (Offline.isOffline()) {
                 var animals = Offline.getData();
+                var found = $filter('filter')(animals, function (i) {
+                    return animalClass.indexOf(i.class) >= 0 && peligro.indexOf(i.category);
+                });
 
-                if (page*5 >= animals.length) {
-                    for (var i = page*5-5; i < animals.length; i++) {
-                        $scope.animals.push(animals[i]);
+                console.log(found);
+
+                if (page*5 >= found.length) {
+                    for (var i = page*5-5; i < found.length; i++) {
+                        $scope.animals.push(found[i]);
+                        $scope.showLoadMoreButton = false;
                     }
                 } else {
                     for (var i = page*5-5; i < page*5; i++) {
-                        $scope.animals.push(animals[i]);
+                        $scope.animals.push(found[i]);
                     }
                 }
 

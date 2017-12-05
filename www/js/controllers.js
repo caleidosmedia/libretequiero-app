@@ -11,7 +11,8 @@
         'ExploraService',
         '$rootScope',
         'Offline',
-        'apiUrl'
+        'apiUrl',
+        '$filter'
     ];
 
     function ExploraController(
@@ -20,7 +21,8 @@
         ExploraService,
         $rootScope,
         Offline,
-        apiUrl
+        apiUrl,
+        $filter
     ) {
 
         $scope.currentPage = 1;
@@ -66,14 +68,20 @@
 
             if (Offline.isOffline()) {
                 var animals = Offline.getData();
+                var found = $filter('filter')(animals, function (i) {
+                    return animalClass.indexOf(i.class) >= 0 && peligro.indexOf(i.category);
+                });
 
-                if (page*5 >= animals.length) {
-                    for (var i = page*5-5; i < animals.length; i++) {
-                        $scope.animals.push(animals[i]);
+                console.log(found);
+
+                if (page*5 >= found.length) {
+                    for (var i = page*5-5; i < found.length; i++) {
+                        $scope.animals.push(found[i]);
+                        $scope.showLoadMoreButton = false;
                     }
                 } else {
                     for (var i = page*5-5; i < page*5; i++) {
-                        $scope.animals.push(animals[i]);
+                        $scope.animals.push(found[i]);
                     }
                 }
 
@@ -199,7 +207,7 @@
             if(filter == 'filterReptilia') {
                 $rootScope.filterReptilia = !$rootScope.filterReptilia;
             }
-            
+
             if(filter == 'filterAves') {
                 $rootScope.filterAves = !$rootScope.filterAves;
             }
@@ -318,6 +326,7 @@
         'NgMap',
         '$cordovaCamera',
         'DenunciarService',
+        'Offline'
     ];
 
     function ProtegeController(
@@ -329,21 +338,26 @@
         $timeout,
         NgMap,
         $cordovaCamera,
-        DenunciarService
-    ) {
+        DenunciarService,
+        Offline
 
-        var directionsService = new google.maps.DirectionsService();
-        function fx(latLng) {
-            var request = {
-                origin:latLng,
-                destination:latLng,
-                travelMode: google.maps.DirectionsTravelMode.DRIVING
-            };
-            directionsService.route(request, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    $scope.denuncia.direccion = response.routes[0].summary;
-                }
-            });
+    ) {
+        $scope.offline = Offline.isOffline();
+
+        if (!Offline.isOffline()) {
+            var directionsService = new google.maps.DirectionsService();
+            function fx(latLng) {
+                var request = {
+                    origin:latLng,
+                    destination:latLng,
+                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                };
+                directionsService.route(request, function(response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        $scope.denuncia.direccion = response.routes[0].summary;
+                    }
+                });
+            }
         }
 
         $ionicModal.fromTemplateUrl('templates/protege/views/success.html', {
@@ -374,12 +388,14 @@
         };
 
         $scope.$on('modal.shown', function() {
-            NgMap.getMap().then(function(map) {
-                $scope.map = map;
-                $scope.map.markers[0].setPosition(new google.maps.LatLng($scope.location[0], $scope.location[1]));
-                $scope.map.setCenter({lat: $scope.location[0], lng: $scope.location[1]});
-                $scope.map.setZoom(18);
-            });
+            if (!Offline.isOffline()) {
+                NgMap.getMap().then(function(map) {
+                    $scope.map = map;
+                    $scope.map.markers[0].setPosition(new google.maps.LatLng($scope.location[0], $scope.location[1]));
+                    $scope.map.setCenter({lat: $scope.location[0], lng: $scope.location[1]});
+                    $scope.map.setZoom(18);
+                });
+            }
         });
 
         $scope.closeMap = function() {
@@ -493,7 +509,7 @@
                 $scope.denuncia.imgURI =  'data:image/jpeg;base64,' + imageData;
                 $scope.denuncia.imagen = imageData;
             });
-        }   
+        }
 
         $scope.grupos = {
             'anfibio': {
@@ -527,7 +543,7 @@
 
         $scope.grupo = {}
 
-       
+
     }
 })();
 
@@ -546,7 +562,9 @@
         '$stateParams',
         'apiUrl',
         'ReconoceService',
-        'Sound'
+        'Sound',
+        'Offline',
+        '$filter'
     ];
 
     function AnimalController(
@@ -555,11 +573,14 @@
         $stateParams,
         apiUrl,
         ReconoceService,
-        Sound
+        Sound,
+        Offline,
+        $filter
     ) {
         $scope.animals = [];
         $scope.detail = false;
         $scope.animalID = $stateParams.id;
+        $scope.offline = Offline.isOffline();
 
         $scope.viewDetail = function () {
             return $scope.detail;
@@ -588,13 +609,32 @@
             }
 
             var imageName = animal.scientific_name.toString().replace(' ', '_');
-            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            if (Offline.isOffline()) {
+                return 'img/animales/' + imageName + '.jpg';
+            } else {
+                return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            }
         }
 
-        ReconoceService
+
+
+        if (Offline.isOffline()) {
+            var animals = Offline.getData();
+            var found = $filter('filter')(animals, {"id": parseInt($stateParams.id)}, true);
+
+            $scope.animals = found[0];
+
+            console.log($scope.animals);
+            var nameSound = $scope.animals.scientific_name;
+                nameSound = nameSound.toLowerCase();
+                nameSound = nameSound.replace(" ", "-");
+            if (window.cordova) {
+                Sound.play(nameSound, nameSound+'.mp3',false);
+            }
+        } else {
+            ReconoceService
             .searchID($stateParams.id)
             .then( function (data) {
-                console.log(data);
                 $scope.animals = data;
                 var nameSound = $scope.animals.scientific_name;
                     nameSound = nameSound.toLowerCase();
@@ -605,6 +645,8 @@
             }).catch( function (error) {
 
             });
+        }
+
     }
 })();
 
@@ -722,7 +764,10 @@
         '$state',
         '$stateParams',
         'ReconoceService',
-        'Sound'
+        'Sound',
+        'Offline',
+        '$filter',
+        'apiUrl'
     ];
 
     function ResultadoController(
@@ -730,10 +775,14 @@
         $state,
         $stateParams,
         ReconoceService,
-        Sound
+        Sound,
+        Offline,
+        $filter,
+        apiUrl
     ) {
         $scope.animals = [];
         $scope.detail = false;
+        $scope.offline = Offline.isOffline();
         $scope.filtros = {
             taxonomia: $stateParams.taxonomia,
             grupo: $stateParams.grupo,
@@ -771,24 +820,62 @@
             }
         };
 
-        ReconoceService
-            .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color, $stateParams.color_secundario)
-            .then( function (data) {
-                console.log(data);
-                $scope.animals = data;
+        $scope.animalImage = function(animal) {
+            if(animal.image_url == null) {
+                return 'img/transparent.png';
+            }
+
+            var imageName = animal.scientific_name.toString().replace(' ', '_');
+            if (Offline.isOffline()) {
+                return 'img/animales/' + imageName + '.jpg';
+            } else {
+                return apiUrl + 'storage/animals/' + imageName + '.jpg';
+            }
+        }
+
+        if (Offline.isOffline()) {
+            var animals = Offline.getData();
+            var color_secundario = ($stateParams.color == "amarillo") ? "azul" : $stateParams.color_secundario;
+            var found = $filter('filter')(animals, {
+                class: ($stateParams.taxonomia == "") ? null : $stateParams.taxonomia.toUpperCase(),
+                color_secundario: (color_secundario == "") ? null : color_secundario,
+                grupo: ($stateParams.grupo == "") ? null : $stateParams.grupo,
+                color: ($stateParams.color == "") ? null : $stateParams.color
+            }, true);
+
+            $scope.animals = found;
+            console.log(found);
+
+            if ($scope.animals.length == 1) {
                 var nameSound = $scope.animals[0].scientific_name;
-                    nameSound = nameSound.toLowerCase();
-                    nameSound = nameSound.replace(" ", "-");
+                nameSound = nameSound.toLowerCase();
+                nameSound = nameSound.replace(" ", "-");
 
-                if ($scope.animals.length <= 1) {
-                    if (window.cordova) {
-                        Sound.play(nameSound, nameSound+'.mp3',false);
-                    }
+                if (window.cordova) {
+                    Sound.play(nameSound, nameSound+'.mp3',false);
                 }
+            }
+        } else {
+            ReconoceService
+                .search($stateParams.taxonomia, $stateParams.grupo, $stateParams.color, $stateParams.color_secundario)
+                .then( function (data) {
+                    console.log(data);
+                    $scope.animals = data;
 
-            }).catch( function (error) {
+                    if ($scope.animals.length === 1) {
+                        var nameSound = $scope.animals[0].scientific_name;
+                        nameSound = nameSound.toLowerCase();
+                        nameSound = nameSound.replace(" ", "-");
 
-            });
+                        if (window.cordova) {
+                            Sound.play(nameSound, nameSound+'.mp3',false);
+                        }
+                    }
+
+                }).catch( function (error) {
+
+                });
+        }
     }
 })();
 

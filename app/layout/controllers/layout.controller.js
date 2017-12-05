@@ -47,7 +47,7 @@
             if(filter == 'filterReptilia') {
                 $rootScope.filterReptilia = !$rootScope.filterReptilia;
             }
-            
+
             if(filter == 'filterAves') {
                 $rootScope.filterAves = !$rootScope.filterAves;
             }

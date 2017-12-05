@@ -1,7 +1,7 @@
 <ion-modal-view class="">
     <ion-content>
-        <map disable-default-u-i="true" center="[-12.016562, -77.0501791]" class="denunciar__map" on-click="addMarker()">
-            <marker position="[-12.016562, -77.0501791]" animation="Animation.BOUNCE"></marker>
+        <map disable-default-u-i="true" center="[{{location[0]}}, {{location[1]}}]" class="denunciar__map" on-click="addMarker()">
+            <marker position="[{{location[0]}}, {{location[1]}}]" animation="Animation.BOUNCE"></marker>
         </map>
         <!--<input class="denunciar__map__searchBox" places-auto-complete types="['geocode']" on-place-changed="onSearch(place)" component-restrictions="{country:'pe'}"/>-->
         <button ng-click="closeMap()" class="button button-block button__default denunciar__map__button">ACEPTAR</button>

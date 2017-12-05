@@ -21,15 +21,19 @@
                 ({{animals.common_name }})
             </div>
 
-            <div class="reconoce__animal__img" style="text-align: center;">
+            <div class="reconoce__animal__img" ng-if="!offline"style="text-align: center;">
                 <img ng-src="{{ animalImage(animals) }}">
+            </div>
+
+            <div class="reconoce__animal__img" ng-if="offline" style="text-align: center;">
+                <img ng-src="img/animales/{{animals.scientific_name.split(' ').join('_')}}.jpg">
             </div>
 
             <div class="reconoce__animal__drop" ng-click="toggleDetail()">
                 Ver detalle <i ng-class="{'ion-ios-arrow-down': viewDetail(), 'ion-ios-arrow-right': !viewDetail() }"></i>
             </div>
 
-            <div class="reconoce__animal__sound" ng-click="playSound()">
+            <div class="reconoce__animal__sound" ng-click="playSound()" ng-if="animals.audio == '1'">
                 <img src="img/play.png">
             </div>
 
