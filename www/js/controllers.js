@@ -85,12 +85,14 @@
 
     LayoutController.$inject = [
         '$scope',
-        '$state'
+        '$state',
+        '$rootScope'
     ];
 
     function LayoutController(
         $scope,
-        $state
+        $state,
+        $rootScope
     ) {
         $scope.goState = function (page) {
             $state.go(page);
