@@ -43,13 +43,33 @@
             if(filter == 'filterAmphibia') {
                 $rootScope.filterAmphibia = !$rootScope.filterAmphibia;
             }
+
+            if(filter == 'filterReptilia') {
+                $rootScope.filterReptilia = !$rootScope.filterReptilia;
+            }
             
             if(filter == 'filterAves') {
                 $rootScope.filterAves = !$rootScope.filterAves;
             }
 
-            if(filter == 'filterReptilia') {
-                $rootScope.filterReptilia = !$rootScope.filterReptilia;
+            if(filter == 'filterCR') {
+                $rootScope.filterCR = !$rootScope.filterCR;
+            }
+
+            if(filter == 'filterEN') {
+                $rootScope.filterEN = !$rootScope.filterEN;
+            }
+
+            if(filter == 'filterVU') {
+                $rootScope.filterVU = !$rootScope.filterVU;
+            }
+
+            if(filter == 'filterNT') {
+                $rootScope.filterNT = !$rootScope.filterNT;
+            }
+
+            if(filter == 'filterDD') {
+                $rootScope.filterDD = !$rootScope.filterDD;
             }
 
             $rootScope.reloadAnimalsExplore();
@@ -59,6 +79,12 @@
         $rootScope.filterAmphibia = true;
         $rootScope.filterAves = true;
         $rootScope.filterReptilia = true;
+        $rootScope.filterCR = true;
+        $rootScope.filterEN = true;
+        $rootScope.filterVU = true;
+        $rootScope.filterNT = true;
+        $rootScope.filterDD = true;
+
 
         // Modo offline
         if (Offline.isOffline()) {

@@ -24,7 +24,7 @@
 
         return service;
 
-        function list(page, animalClass = []) {
+        function list(page, animalClass = [], peligro = []) {
 
             if (page === false) {
                 var data = {
@@ -34,6 +34,7 @@
                 var data = {
                     page: page,
                     class: animalClass,
+                    category: peligro
                 };
             }
 

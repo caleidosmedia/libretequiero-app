@@ -63,17 +63,38 @@
     <ion-side-menu side="right">
         <ion-content>
             <ion-list class="menu__list">
-                <ion-item class="menu__list__item" menu-close ng-click="filter('filterAves')">
-                    AVES
+                <div class="menu__texto">
+                    GRUPO ANIMAL
+                </div>
+                <ion-item class="menu__list__item" ng-click="filter('filterAves')">
+                    <i class="ion-checkmark-circled" ng-show="filterAves == true"></i> <i class="ion-close-circled" ng-show="filterAves == false"></i> AVES
                 </ion-item>
-                <ion-item class="menu__list__item" menu-close ng-click="filter('filterMammalia')">
-                    MAMIFEROS
+                <ion-item class="menu__list__item" ng-click="filter('filterMammalia')">
+                    <i class="ion-checkmark-circled" ng-show="filterMammalia == true"></i> <i class="ion-close-circled" ng-show="filterMammalia == false"></i> MAMIFEROS
                 </ion-item>
-                <ion-item class="menu__list__item" menu-close ng-click="filter('filterReptilia')">
-                    REPTILES
+                <ion-item class="menu__list__item" ng-click="filter('filterReptilia')">
+                    <i class="ion-checkmark-circled" ng-show="filterReptilia == true"></i> <i class="ion-close-circled" ng-show="filterReptilia == false"></i> REPTILES
                 </ion-item>
-                <ion-item class="menu__list__item" menu-close ng-click="filter('filterAmphibia')">
-                    ANFIBIOS
+                <ion-item class="menu__list__item" ng-click="filter('filterAmphibia')">
+                    <i class="ion-checkmark-circled" ng-show="filterAmphibia == true"></i> <i class="ion-close-circled" ng-show="filterAmphibia == false"></i> ANFIBIOS
+                </ion-item>
+                <div class="menu__texto">
+                    AMENAZA DE EXTINCIÓN
+                </div>
+                <ion-item class="menu__list__item" ng-click="filter('filterCR')">
+                    <i class="ion-checkmark-circled" ng-show="filterCR == true"></i> <i class="ion-close-circled" ng-show="filterCR == false"></i> EN PELIGRO CRÍTICO (CR)
+                </ion-item>
+                <ion-item class="menu__list__item" ng-click="filter('filterEN')">
+                    <i class="ion-checkmark-circled" ng-show="filterEN == true"></i> <i class="ion-close-circled" ng-show="filterEN == false"></i> EN PELIGRO (EN)
+                </ion-item>
+                <ion-item class="menu__list__item" ng-click="filter('filterVU')">
+                    <i class="ion-checkmark-circled" ng-show="filterVU == true"></i> <i class="ion-close-circled" ng-show="filterVU == false"></i> VULNERABLE (VU)
+                </ion-item>
+                <ion-item class="menu__list__item" ng-click="filter('filterNT')">
+                    <i class="ion-checkmark-circled" ng-show="filterNT == true"></i> <i class="ion-close-circled" ng-show="filterNT == false"></i> CASI AMENAZADO (NT)
+                </ion-item>
+                <ion-item class="menu__list__item" ng-click="filter('filterDD')">
+                     <i class="ion-checkmark-circled" ng-show="filterDD == true"></i> <i class="ion-close-circled" ng-show="filterDD == false"></i> DATOS INSUFICIENTES (DD)
                 </ion-item>
             </ion-list>
         </ion-content>

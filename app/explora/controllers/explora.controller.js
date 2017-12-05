@@ -26,6 +26,7 @@
         $scope.currentPage = 1;
         $scope.animals = [];
         $scope.offline = Offline.isOffline();
+        $scope.showLoadMoreButton = true;
 
         function loadAnimals(page) {
             var animalClass = [];
@@ -45,6 +46,24 @@
                 animalClass.push('REPTILIA');
             }
 
+            var peligro = [];
+            if($rootScope.filterCR == true) {
+                peligro.push('CR');
+            }
+            if($rootScope.filterNT == true) {
+                peligro.push('NT');
+            }
+            if($rootScope.filterVU == true) {
+                peligro.push('VU');
+            }
+            if($rootScope.filterEN == true) {
+                peligro.push('EN');
+            }
+            if($rootScope.filterDD == true) {
+                peligro.push('DD');
+            }
+
+
             if (Offline.isOffline()) {
                 var animals = Offline.getData();
 
@@ -59,7 +78,10 @@
                 }
 
             } else {
-                ExploraService.list(page, animalClass.toString()).then( function (data) {
+                ExploraService.list(page, animalClass.toString(), peligro.toString()).then( function (data) {
+                    if(data.last_page == data.current_page) {
+                        $scope.showLoadMoreButton = false;
+                    }
                     angular.forEach(data.data, function(animal, key) {
                         $scope.animals.push(animal);
                     });
