@@ -9,14 +9,16 @@
         '$scope',
         '$state',
         'ExploraService',
-        'Offline'
+        'Offline',
+        'apiUrl'
     ];
 
     function ExploraController(
         $scope,
         $state,
         ExploraService,
-        Offline
+        Offline,
+        apiUrl
     ) {
 
         $scope.currentPage = 1;
@@ -65,27 +67,14 @@
             });
         };
 
-    }
-})();
+        $scope.animalImage = function(animal) {
+            if(animal.image_url == null) {
+                return 'img/transparent.png';
+            }
 
-
-
-(function() {
-    'use strict';
-
-    angular
-    .module('atrapa')
-    .controller('HomeController', HomeController);
-
-    HomeController.$inject = [
-        '$scope',
-        '$state'
-    ];
-
-    function HomeController(
-        $scope,
-        $state
-    ) {
+            var imageName = animal.scientific_name.toString().replace(' ', '_');
+            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+        }
 
     }
 })();
@@ -179,6 +168,28 @@
                 $scope.statusName = "Offline";
             }
         };
+    }
+})();
+
+
+
+(function() {
+    'use strict';
+
+    angular
+    .module('atrapa')
+    .controller('HomeController', HomeController);
+
+    HomeController.$inject = [
+        '$scope',
+        '$state'
+    ];
+
+    function HomeController(
+        $scope,
+        $state
+    ) {
+
     }
 })();
 
@@ -427,6 +438,7 @@
         '$scope',
         '$state',
         '$stateParams',
+        'apiUrl',
         'ReconoceService',
         'Sound'
     ];
@@ -435,6 +447,7 @@
         $scope,
         $state,
         $stateParams,
+        apiUrl,
         ReconoceService,
         Sound
     ) {
@@ -462,6 +475,15 @@
                 Sound.play(nameSound, nameSound+'.mp3',false);
             }
         };
+
+        $scope.animalImage = function(animal) {
+            if(animal.image_url == null) {
+                return 'img/transparent.png';
+            }
+
+            var imageName = animal.scientific_name.toString().replace(' ', '_');
+            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+        }
 
         ReconoceService
             .searchID($stateParams.id)

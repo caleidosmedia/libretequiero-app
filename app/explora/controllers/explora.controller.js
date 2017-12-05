@@ -9,14 +9,16 @@
         '$scope',
         '$state',
         'ExploraService',
-        'Offline'
+        'Offline',
+        'apiUrl'
     ];
 
     function ExploraController(
         $scope,
         $state,
         ExploraService,
-        Offline
+        Offline,
+        apiUrl
     ) {
 
         $scope.currentPage = 1;
@@ -64,6 +66,15 @@
                 id: n
             });
         };
+
+        $scope.animalImage = function(animal) {
+            if(animal.image_url == null) {
+                return 'img/transparent.png';
+            }
+
+            var imageName = animal.scientific_name.toString().replace(' ', '_');
+            return apiUrl + 'storage/animals/' + imageName + '.jpg';
+        }
 
     }
 })();

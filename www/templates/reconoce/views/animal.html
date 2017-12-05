@@ -21,8 +21,8 @@
                 ({{animals.common_name }})
             </div>
 
-            <div class="reconoce__animal__img">
-                <img src="{{animals.image_url}}">
+            <div class="reconoce__animal__img" style="text-align: center;">
+                <img ng-src="{{ animalImage(animals) }}">
             </div>
 
             <div class="reconoce__animal__drop" ng-click="toggleDetail()">

@@ -20,7 +20,7 @@
         <div class="explora__cards">
             <div class="explora__card" ng-repeat="(key, animal) in animals" ng-click="goAnimal(animal.id)">
                 <div class="explora__card__img" ng-if="!offline">
-                    <img ng-src="{{animal.image_url}}">
+                    <img ng-src="{{ animalImage(animal) }}">
                 </div>
 
                 <div class="explora__card__img" ng-if="offline">
