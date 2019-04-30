@@ -1,5 +1,5 @@
 <template>
-  <div id="content" class="ion-page" main="">
+  <div id="content" class="ion-page menu-content menu-content-reveal" main="">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-buttons slot="start">
@@ -77,12 +77,11 @@ export default {
       object-fit: cover;
     }
 
-    &__title,&_subtitle {
+    &__title,&__subtitle {
       position: relative;
       color: #fff;
       margin: 0;
       padding: 0;
-      z-index: 1;
     }
 
     &__title {

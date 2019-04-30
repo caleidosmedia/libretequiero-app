@@ -8,10 +8,10 @@
       </ion-header>
       <ion-content color="primary">
         <ion-list class="menu__list">
-          <ion-item color="primary" @click="goTo('home')">Inicio</ion-item>
-          <ion-item color="primary" @click="goTo('explora')">Explora</ion-item>
-          <ion-item color="primary" @click="goTo('reconoce')">Reconoce</ion-item>
-          <ion-item color="primary" @click="goTo('protege')">Protege</ion-item>
+          <ion-menu-toggle><ion-item color="primary" @click="goTo('home')">Inicio</ion-item></ion-menu-toggle>
+          <ion-menu-toggle><ion-item color="primary" @click="goTo('explora')">Explora</ion-item></ion-menu-toggle>
+          <ion-menu-toggle><ion-item color="primary" @click="goTo('reconoce')">Reconoce</ion-item></ion-menu-toggle>
+          <ion-menu-toggle><ion-item color="primary" @click="goTo('protege')">Protege</ion-item></ion-menu-toggle>
         </ion-list>
         <div class="menu__logo">
           <img alt="logo" src="./assets/logo_transparente.png">
