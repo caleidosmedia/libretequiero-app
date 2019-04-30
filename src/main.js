@@ -1,3 +1,6 @@
+import '@ionic/core/css/core.css';
+import '@ionic/core/css/ionic.bundle.css';
+
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
